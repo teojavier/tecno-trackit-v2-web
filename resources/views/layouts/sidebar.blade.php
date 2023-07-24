@@ -84,7 +84,7 @@
                             </div>
                         </div>
 
-                        <!-- Busquedas links -->
+                        <!-- Usuarios links -->
                         <div x-data="{ isActive: false, open: false }">
                             <!-- active classes 'bg-primary-100 dark:bg-primary' -->
                             <a href="#" @click="$event.preventDefault(); open = !open"
@@ -98,7 +98,7 @@
                                             d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                                     </svg>
                                 </span>
-                                <span class="ml-2 text-sm"> Lugares Turiticos </span>
+                                <span class="ml-2 text-sm"> Gestionar Usuario </span>
                                 <span aria-hidden="true" class="ml-auto">
                                     <!-- active class 'rotate-180' -->
                                     <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
@@ -112,17 +112,16 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a href="#" role="menuitem"
+                                <a href="{{ route('users.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Buscar por ciudades
+                                    Lista de Usuarios
                                 </a>
-                                <a href="#" role="menuitem"
+                                <a href="{{ route('users.create') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Buscar por GEOCODE
+                                    Crear Usuarios
                                 </a>
                             </div>
                         </div>
-
                     </nav>
 
                     <!-- Sidebar footer -->
@@ -447,7 +446,7 @@
                             </div>
 
 
-                            <!-- Busquedas links -->
+                            <!-- Usuarios links -->
 
                             <div x-data="{ isActive: false, open: false }">
                                 <!-- active classes 'bg-primary-100 dark:bg-primary' -->
@@ -462,7 +461,7 @@
                                                 d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                                         </svg>
                                     </span>
-                                    <span class="ml-2 text-sm"> Busquedas </span>
+                                    <span class="ml-2 text-sm"> Gestionar Usuario </span>
                                     <span aria-hidden="true" class="ml-auto">
                                         <!-- active class 'rotate-180' -->
                                         <svg class="w-4 h-4 transition-transform transform"
@@ -477,13 +476,13 @@
                                     arial-label="Components">
                                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                    <a href="#" role="menuitem"
+                                    <a href="{{ route('users.index') }}" role="menuitem"
                                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Por Imagen
+                                        Lista de Usuarios
                                     </a>
-                                    <a href="#" role="menuitem"
+                                    <a href="{{ route('users.create') }}" role="menuitem"
                                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                        Por Texto
+                                        Crear Usuario
                                     </a>
                                 </div>
                             </div>
@@ -574,7 +573,7 @@
                                         'border-gray-900 text-gray-900 dark:border-primary-light dark:text-primary-100': isDark,
                                         'text-gray-500 dark:text-primary-light':
                                             !isDark
-                                    }">
+                                    }">Colors
                                     <span>
                                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
