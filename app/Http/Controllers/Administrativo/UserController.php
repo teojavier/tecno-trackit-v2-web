@@ -22,8 +22,13 @@ class UserController extends Controller
 
     public function create()
     {
+        $page = Page::where('view', 'users.create')->first();
+        $page->count = $page->count + 1;
+        $page->save();
+        $contador = $page->count;
         $roles = Role::all();
-        return view('administrativo.usuario.create', compact('roles'));
+
+        return view('administrativo.usuario.create', compact('roles', 'contador'));
     }
 
     public function store(Request $request)
@@ -50,7 +55,13 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Role::all();
-        return view('usuario.edit', compact('user', 'roles'));
+        
+        $page = Page::where('view', 'users.edit')->first();
+        $page->count = $page->count + 1;
+        $page->save();
+        $contador = $page->count;
+
+        return view('administrativo.usuario.edit', compact('user', 'roles', 'contador'));
     }
 
     public function update(Request $request, $id)

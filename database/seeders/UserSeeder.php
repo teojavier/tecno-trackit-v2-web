@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
             'email' => 'teito12333@gmail.com',
             'password' => bcrypt('12345678'),
             'phone' => '78458568',
-
+            'table' => 'users',
+            'redirect' => '/users',
         ])->assignRole('administrativo');
 
         User::create([
@@ -26,6 +27,8 @@ class UserSeeder extends Seeder
             'email' => 'andreshilva3@gmail.com',
             'password' => bcrypt('12345678'),
             'phone' => '78458485',
+            'table' => 'users',
+            'redirect' => '/users',
         ])->assignRole('administrativo');
 
         User::create([
@@ -33,6 +36,8 @@ class UserSeeder extends Seeder
             'email' => 'edson3103a@gmail.com',
             'password' => bcrypt('12345678'),
             'phone' => '78458569',
+            'table' => 'users',
+            'redirect' => '/users',
         ])->assignRole('cliente');
     }
 }

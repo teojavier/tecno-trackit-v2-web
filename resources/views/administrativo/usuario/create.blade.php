@@ -4,7 +4,7 @@
 
     <div class="px-3 py-5">
         <div class="text-start flex">
-            <h2 class="text-lg font-bold text-primary-dark dark:text-light">Usuarios / Crear</h2>
+            <h2 class="text-lg font-bold text-primary-dark dark:text-light">Usuarios / Crear ({{$contador}})</h2>
         </div>
     </div>
 
