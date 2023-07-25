@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Administrativo\MessengerController;
 use App\Http\Controllers\Administrativo\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,5 +30,11 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
+
+
+    Route::get('/messengers/solicitudes', [MessengerController::class, 'solicitudes'])->name('messengers.solicitudes');
+    Route::get('/messengers/recomendaciones', [MessengerController::class, 'recomendaciones'])->name('messengers.recomendaciones');
+    Route::get('/messengers/reclamos', [MessengerController::class, 'reclamos'])->name('messengers.reclamos');
+
 
 });

@@ -14,7 +14,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PageSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(ArticleSeeder::class);
         $this->call(RolSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(Messenger_statuSeeder::class);
+        $this->call(Messenger_typeSeeder::class);
+        $this->call(MessengerSeeder::class);
     }
 }

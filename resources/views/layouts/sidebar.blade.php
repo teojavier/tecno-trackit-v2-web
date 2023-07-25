@@ -244,12 +244,31 @@
                                     </svg>
                                 </span>
                             </a>
+
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a href="{{ route('users.index') }}" role="menuitem"
+                                <a href="{{ route('messengers.solicitudes') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Lista de Usuarios
+                                    Solicitudes
+                                </a>
+                            </div>
+
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
+                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                                <a href="{{ route('messengers.recomendaciones') }}" role="menuitem"
+                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Recomendaciones
+                                </a>
+                            </div>
+
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
+                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                                <a href="{{ route('messengers.reclamos') }}" role="menuitem"
+                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Reclamos
                                 </a>
                             </div>
                         </div>
