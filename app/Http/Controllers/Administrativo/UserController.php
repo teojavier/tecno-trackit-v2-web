@@ -35,10 +35,10 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
             'phone' => 'required|min:7',
-            'check' => 'required'
+            'check' => 'required',
         ]);
 
         User::create([
@@ -46,6 +46,8 @@ class UserController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => bcrypt($request->password),
+            'table' => 'users',
+            'redirect' => '/users',
         ])->assignRole($request->check);
 
         return redirect()->route('users.index')->with('success', 'Usuario creado Exitosamente.');
@@ -83,7 +85,7 @@ class UserController extends Controller
         }
         $user->roles()->sync($request->check);
         $user->save();
-        return redirect()->route('administrativo.usuario.index')->with('success', 'Usuario editado Exitosamente.');
+        return redirect()->route('users.index')->with('success', 'Usuario editado Exitosamente.');
     }
 
 }

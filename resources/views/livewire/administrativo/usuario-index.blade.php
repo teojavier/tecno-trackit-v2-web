@@ -29,7 +29,8 @@
                                     <th class="border py-3 px-6 text-left">Nombre</th>
                                     <th class="border py-3 px-6 text-left">Email</th>
                                     <th class="border py-3 px-6 text-left">Telefono</th>
-                                    <th class="border py-3 px-6 text-center">Editar</th>
+                                    <th class="border py-3 px-6 text-left">Rol</th>
+                                    <th class="border py-3 px-6 text-center">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-600 dark:text-light ">
@@ -56,6 +57,20 @@
                                         <td class="border py-3 px-6 text-left">
                                             <div class="flex items-center">
                                                 <span>{{ $user->phone }}</span>
+                                            </div>
+                                        </td>
+
+                                        <td class="border py-3 px-6 text-left">
+
+                                            <?php
+                                            $rol = DB::table('model_has_roles')
+                                                ->where('model_id', $user->id)
+                                                ->join('roles', 'roles.id', 'model_has_roles.role_id')
+                                                ->first();
+                                        
+                                            ?>
+                                            <div class="flex items-center">
+                                                <span>{{ $rol->name }}</span>
                                             </div>
                                         </td>
 
