@@ -13,11 +13,10 @@
              dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Buscar" wire:model="search">
 
-            <a href="{{ route('messengers.solicitudes.solicitar') }}" class="px-3 py-2 ml-5 bg-primary text-white rounded-md ">Solicitar</a>
         </div>
     </div>
-
-    @if ($solicitudes->count())
+    
+    @if ($moras->count())
         <div class="overflow-x-auto">
             <div class=" bg-primary-dark flex items-center justify-center font-sans  overflow-hidden">
                 <div class="w-full lg:w-5/6">
@@ -26,86 +25,65 @@
                             <thead>
                                 <tr class="border bg-primary text-primary text-white uppercase text-sm leading-normal">
                                     <th class="border py-3 px-6 text-left">ID</th>
-                                    <th class="border py-3 px-6 text-left">Descripcion</th>
+                                    <th class="border py-3 px-6 text-left">Solicitud ID</th>
                                     <th class="border py-3 px-6 text-left">Solicitante</th>
-                                    <th class="border py-3 px-6 text-left">Soporte</th>
-                                    <th class="border py-3 px-6 text-left">Estado</th>
-                                    <th class="border py-3 px-6 text-left">Estado Mora</th>
-                                    <th class="border py-3 px-6 text-center">Opciones</th>
+                                    <th class="border py-3 px-6 text-left">Fecha comienzo</th>
+                                    <th class="border py-3 px-6 text-left">Fecha fin</th>
+                                    <th class="border py-3 px-6 text-left">Fecha comparacion</th>
+                                    <th class="border py-3 px-6 text-center">Estado</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-600 dark:text-light ">
-                                @foreach ($solicitudes as $solicitud)
+                                @foreach ($moras as $mora)
                                     <tr class="border border-gray-200 hover:bg-gray-100 hover:text-black">
                                         <td class="border py-3 px-6 text-left whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <span class="font-medium">{{ $solicitud->id }}</span>
+                                                <span class="font-medium">{{ $mora->id }}</span>
                                             </div>
                                         </td>
 
                                         <td class="border py-3 px-6 text-left">
                                             <div class="flex items-center">
-                                                <span>{{ $solicitud->description }}</span>
+                                                <span>{{ $mora->messenger_id }}</span>
                                             </div>
                                         </td>
 
                                         <td class="border py-3 px-6 text-left">
                                             <div class="flex items-center">
-                                                <span>{{ $solicitud->client }}</span>
+                                                <span>{{ $mora->client}}</span>
                                             </div>
                                         </td>
 
                                         <td class="border py-3 px-6 text-left">
                                             <div class="flex items-center">
-                                                <span>{{ $solicitud->support }}</span>
+                                                <span>{{ $mora->date_begin}}</span>
                                             </div>
                                         </td>
 
                                         <td class="border py-3 px-6 text-left">
                                             <div class="flex items-center">
-                                                @if ($solicitud->status == 'Solicitado')
-                                                    <span
-                                                        class="bg-green-500 rounded-lg px-2">{{ $solicitud->status }}</span>
-                                                @endif
-
-                                                @if ($solicitud->status == 'Atendiendo')
-                                                    <span
-                                                        class="bg-yellow-500 rounded-lg px-2">{{ $solicitud->status }}</span>
-                                                @endif
-
-                                                @if ($solicitud->status == 'Finalizado')
-                                                    <span
-                                                        class="bg-blue-500 rounded-lg px-2">{{ $solicitud->status }}</span>
-                                                @endif
+                                                <span>{{ $mora->date_end}}</span>
                                             </div>
                                         </td>
 
                                         <td class="border py-3 px-6 text-left">
                                             <div class="flex items-center">
-                                                @if ($solicitud->arrear_statu == 'sin mora')
-                                                    <span
-                                                        class="bg-green-500 rounded-lg px-2">{{ $solicitud->arrear_statu }}</span>
-                                                @endif
-
-                                                @if ($solicitud->arrear_statu == 'moroso')
-                                                    <span
-                                                        class="bg-red-500 rounded-lg px-2">{{ $solicitud->arrear_statu }}</span>
-                                                @endif
-
+                                                <span>{{ $mora->date_compare}}</span>
                                             </div>
                                         </td>
 
-                                        
-
-                                        <td class="py-3 px-10 text-center">
-                                            <div class="flex item-center justify-center">
-                                                <a href="{{ route('messengers.solicitudes.solicitar.show', $solicitud->id) }}" class="focus:outline-none">
-                                                    <div class="w-4 mr-2 transform hover:text-primary hover:scale-110">
-                                                        <i class="far fa-eye"></i> 
-                                                    </div>
-                                                </a>
+                                        <td class="border py-3 px-6 text-left">
+                                            <div class="flex items-center">
+                                                @if ($mora->arrear_statu_id == 1)
+                                                <span class="bg-green-500 rounded-lg px-5 py-3 font-bold">{{ $mora->arrear_statu }}</span>
+                                                @endif
+                                                
+                                                @if ($mora->arrear_statu_id == 2)
+                                                <span class="bg-red-500 rounded-lg px-5 py-3 font-bold">{{ $mora->arrear_statu }}</span>
+                                                @endif
                                             </div>
                                         </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -121,27 +99,4 @@
         </div>
 
     @endif
-    <script>
-        Livewire.on('event-destroy-user', function(user) {
-            Swal.fire({
-                title: 'Estas seguro de eliminar a:' + user.name + ' ?',
-                text: "Si aceptas no abrá vuelta atras!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, estoy seguro'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Eliminado!',
-                        'Usuario Eliminado Correctamente.',
-                        'success'
-                    )
-                    Livewire.emit('eventDestroyUserAccept', user.id);
-                }
-            })
-
-        });
-    </script>
 </div>

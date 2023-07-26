@@ -22,23 +22,67 @@
                 <label class="font-bold " for="">Descripción:</label>
                 <textarea class="w-full text-black" name="description" id="" cols="30" rows="5" readonly>{{ $solicitud->description }}</textarea>
             </div>
-            <div class="pr-3">
-                <label class="font-bold" for="">Estado:</label>
-                <div class="mt-5">
-                    @if ($status->id == 1)
-                        <span class="bg-green-500 rounded-lg px-5 py-3 font-bold">{{ $status->name }}</span>
-                    @endif
+            <div class="pr-3 col-span-1">
+                <div class="grid grid-cols-2">
+                    <div class="">
 
-                    @if ($status->id == 2)
-                        <span class="bg-yellow-500 rounded-lg px-5 py-3 font-bold">{{ $status->name }}</span>
-                    @endif
+                        <label class="font-bold" for="">Estado:</label>
+                        <div class="mt-5">
+                            @if ($status->id == 1)
+                                <span class="bg-green-500 rounded-lg px-5 py-3 font-bold">{{ $status->name }}</span>
+                            @endif
+        
+                            @if ($status->id == 2)
+                                <span class="bg-yellow-500 rounded-lg px-5 py-3 font-bold">{{ $status->name }}</span>
+                            @endif
+        
+                            @if ($status->id == 3)
+                                <span class="bg-blue-500 rounded-lg px-5 py-3 font-bold">{{ $status->name }}</span>
+                            @endif
+                        </div>
 
-                    @if ($status->id == 3)
-                        <span class="bg-blue-500 rounded-lg px-5 py-3 font-bold">{{ $status->name }}</span>
-                    @endif
+                    </div>
+                    <div class="">
+                        @if ($mora != null)
+                                                                                  
+                            <label class="font-bold " for="">Estado de Mora:</label>
+                            <div class="mt-5">
+                                
+                                @if ($mora->arrear_statu_id == 1)
+                                <span class="bg-green-500 rounded-lg px-5 py-3 font-bold">{{ $mora->arrearstatu->name }}</span>
+                                @endif
+                                
+                                @if ($mora->arrear_statu_id == 2)
+                                <span class="bg-red-500 rounded-lg px-5 py-3 font-bold">{{ $mora->arrearstatu->name }}</span>
+                                @endif
+                            </div>
+                        @endif
+                    </div>
+
+                    <div class="col-span-2 mt-6">
+
+                        @if ($mora != null && $status->id > 1)
+                        @if ($mora->date_end != null)
+                            <div class="pr-3">
+                                <label class="font-bold " for="">Fecha maxima para antender la solicitud:</label>
+                                <input class="rounded-lg focus:outline-none w-full text-black" type="text"
+                                    value="{{ $mora->date_end }}" id="mora" readonly>
+                            </div>
+                        @endif
+                                               
+                    @endif 
+                    </div>
+
                 </div>
+
             </div>
+           
+                
+           
         </div>
+        
+        
+          
         <div class="grid grid-cols-3 px-4 mt-2">
             <div class="pr-3">
                 <label class="font-bold " for="">Fecha de Solicitud:</label>
@@ -187,7 +231,7 @@
                 </div>
             </div>
         @endif
-
+      
         <div class="ml-3 mt-5">
 
             @if ($status->id == 1)

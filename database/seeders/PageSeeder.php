@@ -92,5 +92,11 @@ class PageSeeder extends Seeder
             'view' => 'messengers.reclamos.reclamar',
             'count' => 0,
         ]);
+
+        //Moras
+        Page::create([
+            'view' => 'moras.index',
+            'count' => 0,
+        ]);
     }
 }
