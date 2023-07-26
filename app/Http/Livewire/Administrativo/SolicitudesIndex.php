@@ -13,6 +13,7 @@ class SolicitudesIndex extends Component
 
     public function render()
     {
+        $search = $this->search;
 
         $solicitudes = Messenger::join('messengers_types as MT', 'messengers.messenger_type_id', '=', 'MT.id')
         ->join('messengers_status as MS', 'messengers.messenger_status_id', '=', 'MS.id')
@@ -28,8 +29,15 @@ class SolicitudesIndex extends Component
             'CA.name as categorie'
         )
         ->where('MT.id', 1)
+        ->where(function ($query) use ($search) {
+            $query->where('MT.name', 'LIKE', '%' . $search . '%')
+                ->orWhere('MS.name', 'LIKE', '%' . $search . '%')
+                ->orWhere('SU.name', 'LIKE', '%' . $search . '%')
+                ->orWhere('CL.name', 'LIKE', '%' . $search . '%')
+                ->orWhere('messengers.description', 'LIKE', '%' . $search . '%')
+                ->orWhere('CA.name', 'LIKE', '%' . $search . '%');
+        })
         ->get();
-
         return view('livewire.administrativo.solicitudes-index', compact('solicitudes'));
     }
 }
