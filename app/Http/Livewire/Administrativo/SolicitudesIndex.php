@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Administrativo;
 use App\Models\Messenger;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
+
 
 class SolicitudesIndex extends Component
 {
@@ -30,14 +32,15 @@ class SolicitudesIndex extends Component
         )
         ->where('MT.id', 1)
         ->where(function ($query) use ($search) {
-            $query->where('MT.name', 'LIKE', '%' . $search . '%')
-                ->orWhere('MS.name', 'LIKE', '%' . $search . '%')
-                ->orWhere('SU.name', 'LIKE', '%' . $search . '%')
-                ->orWhere('CL.name', 'LIKE', '%' . $search . '%')
-                ->orWhere('messengers.description', 'LIKE', '%' . $search . '%')
-                ->orWhere('CA.name', 'LIKE', '%' . $search . '%');
+            $query->whereRaw('LOWER("MT"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("MS"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("SU"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("CL"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("messengers"."description") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("CA"."name") LIKE ?', ['%' . Str::lower($search) . '%']);
         })
         ->get();
+
         return view('livewire.administrativo.solicitudes-index', compact('solicitudes'));
     }
 }

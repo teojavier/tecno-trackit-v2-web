@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <form action="{{ route('users.store') }}" method="POST">
+    <form action="{{ route('messengers.solicitudes.solicitar.store') }}" method="POST">
         @csrf
         <div>
             <div class="grid grid-cols-3 px-4">

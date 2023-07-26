@@ -47,5 +47,11 @@ class PageSeeder extends Seeder
             'view' => 'messengers.solicitudes.solicitar',
             'count' => 0,
         ]);
+
+        Page::create([
+            'view' => 'messengers.solicitudes.show',
+            'count' => 0,
+        ]);
+   
     }
 }
