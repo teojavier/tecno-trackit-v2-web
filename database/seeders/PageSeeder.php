@@ -57,5 +57,40 @@ class PageSeeder extends Seeder
             'view' => 'departments.create',
             'count' => 0,
         ]);
+
+        Page::create([
+            'view' => 'messengers.solicitudes',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.recomendaciones',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.reclamos',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.solicitudes.solicitar',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.solicitudes.show',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.recomendaciones.recomendar',
+            'count' => 0,
+        ]);
+        
+        Page::create([
+            'view' => 'messengers.reclamos.reclamar',
+            'count' => 0,
+        ]);
     }
 }

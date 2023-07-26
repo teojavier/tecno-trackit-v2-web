@@ -3,8 +3,11 @@
 namespace App\Http\Livewire\Layout;
 
 use App\Models\Category;
+use App\Models\Department;
+use App\Models\Messenger;
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class BuscadorGlobal extends Component
 {
@@ -12,19 +15,75 @@ class BuscadorGlobal extends Component
 
     public function render()
     {
-        //$resultados = User::all();
-        $usuarios = User::where('name', 'LIKE' , '%' . $this->search . '%')
-        ->orWhere('phone', 'LIKE' , '%' . $this->search . '%')
-        ->orWhere('email', 'LIKE' , '%' . $this->search . '%')
+        $search = $this->search;
+
+        $usuarios = User::whereRaw('LOWER("users"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+        ->orWhereRaw('LOWER("users"."email") LIKE ?', ['%' . Str::lower($search) . '%'])
+        ->orWhereRaw('LOWER("users"."phone") LIKE ?', ['%' . Str::lower($search) . '%'])
         ->select('id', 'table', 'redirect')
         ->get();
 
-        $categorias = Category::where('name', 'LIKE' , '%' . $this->search . '%')
-        ->orWhere('time', 'LIKE' , '%' . $this->search . '%')
+        $categorias = Category::whereRaw('LOWER("categories"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+        ->orWhere('categories.time', 'ILIKE', '%' . $search . '%')
         ->select('id', 'table', 'redirect')
         ->get();
 
-        $resultados = $usuarios->union($categorias);
+        $departamentos = Department::whereRaw('LOWER("departments"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+        ->select('id', 'table', 'redirect')
+        ->get();
+
+        $solicitudes = Messenger::join('messengers_types as MT', 'messengers.messenger_type_id', '=', 'MT.id')
+        ->join('messengers_status as MS', 'messengers.messenger_status_id', '=', 'MS.id')
+        ->join('users as SU', 'messengers.support_id', '=', 'SU.id')
+        ->join('users as CL', 'messengers.client_id', '=', 'CL.id')
+        ->join('categories as CA', 'messengers.categorie_id', '=', 'CA.id')
+        ->select('messengers.id', 'messengers.table', 'messengers.redirect')
+        ->where('MT.id', 1)
+        ->where(function ($query) use ($search) {
+            $query->whereRaw('LOWER("MT"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("MS"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("SU"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("CL"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("messengers"."description") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("CA"."name") LIKE ?', ['%' . Str::lower($search) . '%']);
+        })->get();
+
+        $recomendaciones = Messenger::join('messengers_types as MT', 'messengers.messenger_type_id', '=', 'MT.id')
+        ->join('messengers_status as MS', 'messengers.messenger_status_id', '=', 'MS.id')
+        ->join('users as SU', 'messengers.support_id', '=', 'SU.id')
+        ->join('users as CL', 'messengers.client_id', '=', 'CL.id')
+        ->join('categories as CA', 'messengers.categorie_id', '=', 'CA.id')
+        ->select('messengers.id', 'messengers.table', 'messengers.redirect')
+        ->where('MT.id', 2)
+        ->where(function ($query) use ($search) {
+            $query->whereRaw('LOWER("MT"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("MS"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("SU"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("CL"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("messengers"."description") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("CA"."name") LIKE ?', ['%' . Str::lower($search) . '%']);
+        })->get();
+
+        $reclamos = Messenger::join('messengers_types as MT', 'messengers.messenger_type_id', '=', 'MT.id')
+        ->join('messengers_status as MS', 'messengers.messenger_status_id', '=', 'MS.id')
+        ->join('users as SU', 'messengers.support_id', '=', 'SU.id')
+        ->join('users as CL', 'messengers.client_id', '=', 'CL.id')
+        ->join('categories as CA', 'messengers.categorie_id', '=', 'CA.id')
+        ->select('messengers.id', 'messengers.table', 'messengers.redirect')
+        ->where('MT.id', 3)
+        ->where(function ($query) use ($search) {
+            $query->whereRaw('LOWER("MT"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("MS"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("SU"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("CL"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("messengers"."description") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("CA"."name") LIKE ?', ['%' . Str::lower($search) . '%']);
+        })->get();
+
+
+        $resultados = $usuarios->union($categorias)->union($departamentos)->union($solicitudes)
+        ->union($recomendaciones)->union($reclamos);
+        
         return view('livewire..layout.buscador-global', compact('resultados'));
     }
 }

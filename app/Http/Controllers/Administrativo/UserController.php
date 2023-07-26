@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administrativo;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\Page;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,8 +28,9 @@ class UserController extends Controller
         $page->save();
         $contador = $page->count;
         $roles = Role::all();
+        $departamentos = Department::all();
 
-        return view('administrativo.usuario.create', compact('roles', 'contador'));
+        return view('administrativo.usuario.create', compact('roles', 'contador', 'departamentos'));
     }
 
     public function store(Request $request)
@@ -39,6 +41,7 @@ class UserController extends Controller
             'password' => 'required|min:8',
             'phone' => 'required|min:7',
             'check' => 'required',
+            'department_id' => 'required',
         ]);
 
         User::create([
@@ -48,6 +51,7 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
             'table' => 'users',
             'redirect' => '/users',
+            'department_id' => $request->department_id,
         ])->assignRole($request->check);
 
         return redirect()->route('users.index')->with('success', 'Usuario creado Exitosamente.');
@@ -62,8 +66,10 @@ class UserController extends Controller
         $page->count = $page->count + 1;
         $page->save();
         $contador = $page->count;
+        $departamentos = Department::all();
+        $depa = Department::find($user->department_id);
 
-        return view('administrativo.usuario.edit', compact('user', 'roles', 'contador'));
+        return view('administrativo.usuario.edit', compact('user', 'roles', 'contador', 'departamentos', 'depa'));
     }
 
     public function update(Request $request, $id)
