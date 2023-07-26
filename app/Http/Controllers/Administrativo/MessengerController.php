@@ -91,4 +91,77 @@ class MessengerController extends Controller
 
         return redirect()->route('messengers.solicitudes')->with('success', 'Solicitud Registrada Exitosamente.');
     }
+
+    public function recomendar()
+    {
+        $page = Page::where('view', 'messengers.recomendaciones.recomendar')->first();
+        $page->count = $page->count + 1;
+        $page->save();
+        $contador = $page->count;
+
+        $soportes = User::role('administrativo')->get();
+        $categorias = Category::all();
+
+        return view('administrativo.messenger.recomendar', compact('soportes', 'categorias', 'contador'));
+    }
+
+    public function recomendarStore(Request $request)
+    {
+        $request->validate([
+            'support' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+        ]);
+
+        $solicitud = Messenger::create([
+            'description' => $request->description,
+            'date_request' => Carbon::now(),
+            'support_id' => $request->support,
+            'client_id' => auth()->user()->id,
+            'categorie_id' => $request->category,
+            'messenger_type_id' => 2,
+            'messenger_status_id' => 1,
+            'table' => 'messengers',
+            'redirect' => '/messengers/recomendaciones',
+        ]);
+
+        return redirect()->route('messengers.recomendaciones')->with('success', 'Recomendacion Registrada Exitosamente.');
+    }
+
+    public function reclamar()
+    {
+        $page = Page::where('view', 'messengers.reclamos.reclamar')->first();
+        $page->count = $page->count + 1;
+        $page->save();
+        $contador = $page->count;
+
+        $soportes = User::role('administrativo')->get();
+        $categorias = Category::all();
+
+        return view('administrativo.messenger.reclamar', compact('soportes', 'categorias', 'contador'));
+    }
+
+    public function reclamarStore(Request $request)
+    {
+        $request->validate([
+            'support' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+        ]);
+
+        $solicitud = Messenger::create([
+            'description' => $request->description,
+            'date_request' => Carbon::now(),
+            'support_id' => $request->support,
+            'client_id' => auth()->user()->id,
+            'categorie_id' => $request->category,
+            'messenger_type_id' => 3,
+            'messenger_status_id' => 1,
+            'table' => 'messengers',
+            'redirect' => '/messengers/reclamos',
+        ]);
+
+        return redirect()->route('messengers.reclamos')->with('success', 'Reclamo Registrada Exitosamente.');
+    }
+    
 }

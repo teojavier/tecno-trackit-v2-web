@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Administrativo;
 use App\Models\Messenger;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
 
 class ReclamosIndex extends Component
 {
@@ -14,6 +15,8 @@ class ReclamosIndex extends Component
 
     public function render()
     {
+        $search = $this->search;
+
         $reclamos = Messenger::join('messengers_types as MT', 'messengers.messenger_type_id', '=', 'MT.id')
         ->join('messengers_status as MS', 'messengers.messenger_status_id', '=', 'MS.id')
         ->join('users as SU', 'messengers.support_id', '=', 'SU.id')
@@ -28,6 +31,14 @@ class ReclamosIndex extends Component
             'CA.name as categorie'
         )
         ->where('MT.id', 3)
+        ->where(function ($query) use ($search) {
+            $query->whereRaw('LOWER("MT"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("MS"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("SU"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("CL"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("messengers"."description") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("CA"."name") LIKE ?', ['%' . Str::lower($search) . '%']);
+        })->orderBy('messengers.messenger_status_id', 'asc')->orderBy('messengers.date_request', 'asc')
         ->get();
 
 

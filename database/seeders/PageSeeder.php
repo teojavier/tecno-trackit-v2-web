@@ -82,6 +82,15 @@ class PageSeeder extends Seeder
             'view' => 'messengers.solicitudes.show',
             'count' => 0,
         ]);
-   
+
+        Page::create([
+            'view' => 'messengers.recomendaciones.recomendar',
+            'count' => 0,
+        ]);
+        
+        Page::create([
+            'view' => 'messengers.reclamos.reclamar',
+            'count' => 0,
+        ]);
     }
 }

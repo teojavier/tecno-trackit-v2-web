@@ -29,6 +29,7 @@
                                     <th class="border py-3 px-6 text-left">Nombre</th>
                                     <th class="border py-3 px-6 text-left">Email</th>
                                     <th class="border py-3 px-6 text-left">Telefono</th>
+                                    <th class="border py-3 px-6 text-left">Departamento</th>
                                     <th class="border py-3 px-6 text-left">Rol</th>
                                     <th class="border py-3 px-6 text-center">Opciones</th>
                                 </tr>
@@ -57,6 +58,12 @@
                                         <td class="border py-3 px-6 text-left">
                                             <div class="flex items-center">
                                                 <span>{{ $user->phone }}</span>
+                                            </div>
+                                        </td>
+
+                                        <td class="border py-3 px-6 text-left">
+                                            <div class="flex items-center">
+                                                <span>{{ $user->department }}</span>
                                             </div>
                                         </td>
 

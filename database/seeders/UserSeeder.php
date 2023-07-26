@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'phone' => '78458568',
             'table' => 'users',
             'redirect' => '/users',
+            'department_id' => 1,
         ])->assignRole('administrativo');
 
         User::create([
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
             'phone' => '78458485',
             'table' => 'users',
             'redirect' => '/users',
+            'department_id' => 3,
         ])->assignRole('administrativo');
 
         User::create([
@@ -38,6 +40,7 @@ class UserSeeder extends Seeder
             'phone' => '78458569',
             'table' => 'users',
             'redirect' => '/users',
+            'department_id' => 5,
         ])->assignRole('cliente');
     }
 }

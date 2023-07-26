@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Administrativo;
 use App\Models\Department;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Str;
+
 
 class DepartamentoIndex extends Component
 {
@@ -25,8 +27,9 @@ class DepartamentoIndex extends Component
     
     public function render()
     {
-        $departamentos = Department::where('name', 'LIKE' , '%' . $this->search . '%')
+        $departamentos = Department::whereRaw('LOWER("departments"."name") LIKE ?', ['%' . Str::lower($this->search) . '%'])
         ->get();
+
         return view('livewire.administrativo.departamento-index', compact('departamentos'));
     }
 }

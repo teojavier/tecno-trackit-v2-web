@@ -57,5 +57,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/messengers/solicitudes/solicitar/show/{id}', [MessengerController::class, 'solicitudShow'])->name('messengers.solicitudes.solicitar.show');
     Route::post('/messengers/solicitudes/solicitar/store', [MessengerController::class, 'solicitarStore'])->name('messengers.solicitudes.solicitar.store');
 
-   
+    Route::get('/messengers/recomendaciones/recomendar', [MessengerController::class, 'recomendar'])->name('messengers.recomendaciones.recomendar');
+    Route::post('/messengers/recomendaciones/recomendar/store', [MessengerController::class, 'recomendarStore'])->name('messengers.recomendaciones.recomendar.store');
+
+    Route::get('/messengers/reclamos/reclamar', [MessengerController::class, 'reclamar'])->name('messengers.reclamos.reclamar');
+    Route::post('/messengers/reclamos/reclamar/store', [MessengerController::class, 'reclamarStore'])->name('messengers.reclamos.reclamar.store');
+
 });

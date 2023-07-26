@@ -38,7 +38,7 @@ class SolicitudesIndex extends Component
                 ->orWhereRaw('LOWER("CL"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
                 ->orWhereRaw('LOWER("messengers"."description") LIKE ?', ['%' . Str::lower($search) . '%'])
                 ->orWhereRaw('LOWER("CA"."name") LIKE ?', ['%' . Str::lower($search) . '%']);
-        })
+        })->orderBy('messengers.messenger_status_id', 'asc')->orderBy('messengers.date_request', 'asc')
         ->get();
 
         return view('livewire.administrativo.solicitudes-index', compact('solicitudes'));

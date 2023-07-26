@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('table')->nullable();
             $table->string('redirect')->nullable();
+            $table->unsignedBigInteger('department_id')->nullable()->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
+
             $table->timestamps();
         });
     }
