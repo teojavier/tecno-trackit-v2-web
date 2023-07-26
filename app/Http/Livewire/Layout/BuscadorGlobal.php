@@ -25,7 +25,6 @@ class BuscadorGlobal extends Component
         ->get();
 
         $resultados = $usuarios->union($categorias);
-
         return view('livewire..layout.buscador-global', compact('resultados'));
     }
 }
