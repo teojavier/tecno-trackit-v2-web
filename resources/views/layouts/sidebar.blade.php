@@ -24,7 +24,7 @@
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
-    
+
     <!-- Styles -->
     @livewireStyles
     @livewireScripts
@@ -105,8 +105,7 @@
                         <!-- Desktop Right buttons -->
                         <nav aria-label="Secondary" class="hidden space-x-2 md:flex md:items-center">
                             <!-- Toggle dark theme button -->
-                            <button aria-hidden="true" class="relative focus:outline-none" x-cloak
-                                @click="toggleTheme">
+                            <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
                                 <div
                                     class="w-12 h-6 transition rounded-full outline-none bg-primary-100 dark:bg-primary-lighter">
                                 </div>
@@ -671,9 +670,18 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
     <script>
         const setup = () => {
+
             const getTheme = () => {
                 if (window.localStorage.getItem('dark')) {
-                    return JSON.parse(window.localStorage.getItem('dark'))
+                    const now = new Date()
+                    const hour = now.getHours()
+
+                    const darkStartHour = 19
+                    const darkEndHour = 7
+
+                    const isDarkMode = hour >= darkStartHour || hour < darkEndHour
+                    return isDarkMode;
+                    // return JSON.parse(window.localStorage.getItem('dark'))
                 }
 
                 return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches

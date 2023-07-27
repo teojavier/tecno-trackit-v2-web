@@ -120,7 +120,7 @@ class MenuSeeder extends Seeder
         // 20
         Menu::create([
             'title' => 'Lista de Reportes',
-            'redirect' => 'messengers.reclamos'
+            'redirect' => 'dashboard'
         ]);
         // 21
         Menu::create([

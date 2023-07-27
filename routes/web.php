@@ -9,6 +9,7 @@ use App\Http\Controllers\Administrativo\CategoryController;
 use App\Http\Controllers\Administrativo\DepartmentController;
 use App\Http\Controllers\Administrativo\MoraController;
 use App\Http\Controllers\Cliente\CMessegerController;
+use App\Http\Controllers\Controller;
 use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +29,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [Controller::class, 'index'])->name('dashboard');
 
     //USUARIOS
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
