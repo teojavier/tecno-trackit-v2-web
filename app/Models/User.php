@@ -32,8 +32,8 @@ class User extends Authenticatable
         'password',
         'phone',
         'redirect',
-        'table'
-
+        'table',
+        'department_id'
     ];
 
     /**

@@ -18,6 +18,7 @@
         <!-- Panel content (Search result) -->
         <div class="flex-1 px-4 pb-4 space-y-4 overflow-y-hidden h hover:overflow-y-auto">
             <h3 class="py-2 text-sm font-semibold text-gray-600 dark:text-light">Historial:</h3>
+            
             @foreach ($resultados as $resultado)
                 <a href="{{ url( $resultado->redirect )}}" class="flex space-x-4">
                     <div class="flex-shrink-0">

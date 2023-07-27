@@ -12,9 +12,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(MenuSeeder::class);
         $this->call(PageSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(ArticleSeeder::class);
+        $this->call(Messenger_statuSeeder::class);
+        $this->call(Messenger_typeSeeder::class);
+        $this->call(MessengerSeeder::class);
+        $this->call(DepartmentSeeder::class);
         $this->call(RolSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(ArrearStatusSeeder::class);
+        $this->call(MoraSeeder::class);
     }
 }

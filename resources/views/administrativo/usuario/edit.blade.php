@@ -38,15 +38,21 @@
             </div>
             <div class="grid grid-cols-3 px-4 pt-5">
                 <div class="pr-3">
-                    <label class="font-bold " for="">Contraseña:</label>
-                    <input type="password" class="rounded-lg focus:outline-none w-full text-black" name="password"
-                        id="password">
-                    @error('password')
+                    <label class="font-bold " for="">Departamento:</label>
+                    <select name="department_id" id="department_id"
+                        class="m-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pr-8 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="{{ $depa->id }}"> {{ $depa->name }}</option>
+                        @foreach ($departamentos as $departamento)
+                            <option value="{{ $departamento->id }}">{{ $departamento->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('department_id')
                         <span class="text-left text-red-500 ">Inserte Datos Correctos</span>
                     @enderror
                 </div>
                 <div class="col-span-1 mr-10">
                     <div class="relative z-0 w-full mb-6 group">
+                        <label class="font-bold " for="">Roles:</label>
                         @foreach ($roles as $rol)
                             <div class="">
                                 <label for="{{ $rol->name }}">
@@ -60,6 +66,14 @@
                             <span class="text-left text-red-500 ">Marca un rol</span>
                         @enderror
                     </div>
+                </div>
+                <div class="pr-3">
+                    <label class="font-bold " for="">Contraseña:</label>
+                    <input type="password" class="rounded-lg focus:outline-none w-full text-black" name="password"
+                        id="password">
+                    @error('password')
+                        <span class="text-left text-red-500 ">Inserte Datos Correctos</span>
+                    @enderror
                 </div>
             </div>
             <div class="mt-1 ml-3">
