@@ -27,7 +27,7 @@
 
     <!-- Styles -->
     @livewireStyles
-    @livewireScripts
+    
 
 </head>
 
@@ -945,6 +945,8 @@
             }
         }
     </script>
+
+    @livewireScripts
 </body>
 
 </html>
