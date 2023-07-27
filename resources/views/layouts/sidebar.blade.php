@@ -46,6 +46,7 @@
                 class="flex-shrink-0 hidden w-64 bg-white border-r dark:border-primary-darker dark:bg-darker md:block">
                 <div class="flex flex-col h-full">
                     <!-- Sidebar links -->
+
                     @livewire('layout.navbar')
 
                     <!-- Sidebar footer -->

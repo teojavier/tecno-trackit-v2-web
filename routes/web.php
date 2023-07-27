@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\Administrativo\SoporteIAController;
 use App\Http\Controllers\Administrativo\ArticleController;
 use App\Http\Controllers\Administrativo\MessengerController;
 use App\Http\Controllers\Administrativo\UserController;
@@ -36,6 +38,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
+
+
+    // Soporte IA
+    Route::get('/soporte-ia', [SoporteIAController::class, 'index'])->name('soporte-ia.index');
 
     //CATEGORIAS
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
@@ -92,4 +98,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/articles/edit/{id}', [ArticleController::class, 'edit'])->name('articles.edit');
     Route::post('/articles/update/{id}', [ArticleController::class, 'update'])->name('articles.update');
     Route::get('/articles/show/{id}', [ArticleController::class, 'show'])->name('articles.show');
+
 });
