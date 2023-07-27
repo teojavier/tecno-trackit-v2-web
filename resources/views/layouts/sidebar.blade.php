@@ -809,6 +809,29 @@
             }
         }
     </script>
+    <script>
+        Livewire.on('event-destroy-user', function(user) {
+            Swal.fire({
+                title: 'Estas seguro de eliminar a:' + user.name + ' ?',
+                text: "Si aceptas no abrá vuelta atras!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, estoy seguro'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'Usuario Eliminado Correctamente.',
+                        'success'
+                    )
+                    Livewire.emit('eventDestroyUserAccept', user.id);
+                }
+            })
+
+        });
+    </script>
 </body>
 
 </html>
