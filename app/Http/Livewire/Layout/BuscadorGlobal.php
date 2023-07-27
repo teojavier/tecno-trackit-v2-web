@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Layout;
 
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Messenger;
@@ -81,8 +82,6 @@ class BuscadorGlobal extends Component
                 ->orWhereRaw('LOWER("CA"."name") LIKE ?', ['%' . Str::lower($search) . '%']);
         })->get();
 
-
-
         $moras = Mora::join('messengers as MG', 'moras.messenger_id', '=', 'MG.id')
         ->join('users', 'MG.client_id', '=', 'users.id')      
         ->join('arrear_status as AR', 'moras.arrear_statu_id', '=', 'AR.id')      
@@ -93,9 +92,14 @@ class BuscadorGlobal extends Component
         })->orderBy('moras.id', 'asc')
         ->get();
 
+        $articulos = Article::join('categories', 'categories.id', 'articles.categorie_id' )
+        ->whereRaw('LOWER("articles"."title") LIKE ?', ['%' . Str::lower($this->search) . '%'])
+        ->orWhereRaw('LOWER("articles"."content") LIKE ?', ['%' . Str::lower($this->search) . '%'])
+        ->select('articles.id', 'articles.table', 'articles.redirect')
+        ->get();
 
         $resultados = $usuarios->union($categorias)->union($departamentos)->union($solicitudes)
-        ->union($recomendaciones)->union($reclamos)->union($moras);
+        ->union($recomendaciones)->union($reclamos)->union($moras)->union($articulos);
         
         return view('livewire..layout.buscador-global', compact('resultados'));
     }
