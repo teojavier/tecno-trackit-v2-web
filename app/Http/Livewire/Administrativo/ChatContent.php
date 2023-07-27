@@ -30,7 +30,7 @@ class ChatContent extends Component
     public function requestOpenAI()
     {
         // Obtener la API Key desde el archivo .env
-        $apiKey = $_ENV['OPENA_AI_API_KEY'];
+        $apiKey = "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";
 
         // URL de la API
         $url =

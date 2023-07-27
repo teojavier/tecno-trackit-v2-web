@@ -668,7 +668,7 @@
 
     <!-- All javascript code in this project for now is just for demo DON'T RELY ON IT  -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
-
+	@livewireScripts
     <script>
         Livewire.on('event-destroy-article', function(id) {
             Swal.fire({
@@ -946,7 +946,6 @@
         }
     </script>
 
-    @livewireScripts
 </body>
 
 </html>
