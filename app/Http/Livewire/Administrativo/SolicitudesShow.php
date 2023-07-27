@@ -7,6 +7,7 @@ use App\Models\diffFecha;
 use App\Models\Messenger;
 use App\Models\Messenger_statu;
 use App\Models\Messenger_type;
+use App\Models\Mora;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
@@ -14,7 +15,7 @@ use Livewire\Component;
 
 class SolicitudesShow extends Component
 {
-    public $conclution, $solicitud, $soporte, $cliente, $categoria, $type, $status, $date_request, $date_accept, $date_finish;
+    public $conclution, $solicitud, $soporte, $cliente, $categoria, $type, $status, $date_request, $date_accept, $date_finish, $mora ;
     public $solicitud_aceptacion, $aceptacion_finalizacion, $tiempo_total;
     protected $listeners = ['eventSolicitudAcceptCorrecty', 'eventSolicitudFinishCorrecty'];
     protected $rules = [
@@ -32,6 +33,7 @@ class SolicitudesShow extends Component
         $this->categoria = Category::find($this->solicitud->categorie_id);
         $this->type = Messenger_type::find($this->solicitud->messenger_type_id);
         $this->status = Messenger_statu::find($this->solicitud->messenger_status_id);
+        $this->mora = Mora::where('messenger_id', $this->solicitud->id)->first();
 
 
         //CALCULO DE LOS TIEMPOS
@@ -83,6 +85,14 @@ class SolicitudesShow extends Component
         $solicitud->messenger_status_id = 2;
         $solicitud->date_accept = Carbon::now();
         $solicitud->save();
+
+        $mora = Mora::where('messenger_id', $solicitud->id)->first();
+        $mora->date_begin = Carbon::now();
+        $categoria = Category::find($solicitud->categorie_id);
+        $time = $categoria->time;
+        $mora->date_end = Carbon::now()->addHours($time);
+        $mora->save();
+
         $this->mount($solicitud->id);
     }
 
@@ -99,6 +109,18 @@ class SolicitudesShow extends Component
         $solicitud->date_finish = Carbon::now();
         $solicitud->conclution = $this->conclution;
         $solicitud->save();
+        
+        $mora = Mora::where('messenger_id', $solicitud->id)->first();
+        $mora->date_compare = $solicitud->date_finish;
+
+        $fechaCompare = new DateTime($mora->date_compare);
+        $fechaEnd = new DateTime($mora->date_end);
+        
+        if ($fechaCompare > $fechaEnd   ) {
+            $mora->arrear_statu_id = 2;
+        }
+
+        $mora->save();
         $this->mount($id);
     }
 

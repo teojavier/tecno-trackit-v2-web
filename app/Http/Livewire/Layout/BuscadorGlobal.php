@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Layout;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Messenger;
+use App\Models\Mora;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -81,8 +82,20 @@ class BuscadorGlobal extends Component
         })->get();
 
 
+
+        $moras = Mora::join('messengers as MG', 'moras.messenger_id', '=', 'MG.id')
+        ->join('users', 'MG.client_id', '=', 'users.id')      
+        ->join('arrear_status as AR', 'moras.arrear_statu_id', '=', 'AR.id')      
+        ->select('moras.id', 'moras.table', 'moras.redirect')
+        ->where(function ($query) use ($search) {
+            $query->whereRaw('LOWER("users"."name") LIKE ?', ['%' . Str::lower($search) . '%'])
+                ->orWhereRaw('LOWER("AR"."name") LIKE ?', ['%' . Str::lower($search) . '%']);
+        })->orderBy('moras.id', 'asc')
+        ->get();
+
+
         $resultados = $usuarios->union($categorias)->union($departamentos)->union($solicitudes)
-        ->union($recomendaciones)->union($reclamos);
+        ->union($recomendaciones)->union($reclamos)->union($moras);
         
         return view('livewire..layout.buscador-global', compact('resultados'));
     }

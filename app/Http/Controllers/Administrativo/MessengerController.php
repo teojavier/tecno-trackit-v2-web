@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Messenger;
 use App\Models\Messenger_statu;
 use App\Models\Messenger_type;
+use App\Models\Mora;
 use App\Models\Page;
 use App\Models\User;
 use Carbon\Carbon;
@@ -88,6 +89,14 @@ class MessengerController extends Controller
             'table' => 'messengers',
             'redirect' => '/messengers/solicitudes',
         ]);
+
+        Mora::create([
+            'arrear_statu_id' => 1,
+            'messenger_id' => $solicitud->id,
+            'table' => 'moras',
+            'redirect' => '/moras',
+        ]);
+
 
         return redirect()->route('messengers.solicitudes')->with('success', 'Solicitud Registrada Exitosamente.');
     }
