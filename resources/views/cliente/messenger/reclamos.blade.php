@@ -8,6 +8,6 @@
         </div>
     </div>
 
-    @livewire('administrativo.reclamos-index')
+    @livewire('cliente.reclamos-index')
 
     @endsection

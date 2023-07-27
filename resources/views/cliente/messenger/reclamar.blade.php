@@ -3,12 +3,12 @@
 @section('content')
     <div class="px-3 py-5">
         <div class="text-start flex">
-            <h2 class="text-lg font-bold text-primary-dark dark:text-light">Mensajeria / Reclamos / Reclamar
+            <h2 class="text-lg font-bold text-primary-dark dark:text-light">Mensajeria / Cliente / Reclamos / Reclamar
                 ({{ $contador }})</h2>
         </div>
     </div>
 
-    <form action="{{ route('messengers.reclamos.reclamar.store') }}" method="POST">
+    <form action="{{ route('messengers.clientes.reclamos.reclamar.store') }}" method="POST">
         @csrf
         <div>
             <div class="grid grid-cols-3 px-4">

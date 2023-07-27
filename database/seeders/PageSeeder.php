@@ -153,5 +153,11 @@ class PageSeeder extends Seeder
             'view' => 'messengers.clientes.reclamos.reclamar',
             'count' => 0,
         ]);
+
+        Page::create([
+            'view' => 'messengers.clientes.solicitudes.solicitar.show',
+            'count' => 0,
+        ]);
+        
     }
 }
