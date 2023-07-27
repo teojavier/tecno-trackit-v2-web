@@ -34,8 +34,8 @@
                                                 class="fa fa-wallet fa-2x fa-inverse"></i></div>
                                     </div>
                                     <div class="flex-1 text-right md:text-center">
-                                        <h2 class="font-bold uppercase text-sm text-gray-600">Total Revenue</h2>
-                                        <p class="font-bold text-lg">$3249 <span class="text-green-500"><i
+                                        <h2 class="font-bold uppercase text-sm text-gray-600">Total Solicitudes</h2>
+                                        <p class="font-bold text-lg">{{ $solicitudes }} <span class="text-green-500"><i
                                                     class="fas fa-caret-up"></i></span></p>
                                     </div>
                                 </div>
@@ -52,8 +52,8 @@
                                                 class="fas fa-users fa-2x fa-inverse"></i></div>
                                     </div>
                                     <div class="flex-1 text-right md:text-center">
-                                        <h2 class="font-bold uppercase text-sm text-gray-600">Total Users</h2>
-                                        <p class="font-bold text-lg">249 <span class="text-pink-500"><i
+                                        <h2 class="font-bold uppercase text-sm text-gray-600">Total Usuarios</h2>
+                                        <p class="font-bold text-lg">{{ $users }} <span class="text-pink-500"><i
                                                     class="fas fa-exchange-alt"></i></span></p>
                                     </div>
                                 </div>
@@ -70,8 +70,8 @@
                                                 class="fas fa-user-plus fa-2x fa-inverse"></i></div>
                                     </div>
                                     <div class="flex-1 text-right md:text-center">
-                                        <h2 class="font-bold uppercase text-sm text-gray-600">New Users</h2>
-                                        <p class="font-bold text-lg">2 <span class="text-yellow-600"><i
+                                        <h2 class="font-bold uppercase text-sm text-gray-600">Total Recomend</h2>
+                                        <p class="font-bold text-lg">{{ $recomendaciones }} <span class="text-yellow-600"><i
                                                     class="fas fa-caret-up"></i></span></p>
                                     </div>
                                 </div>
@@ -88,8 +88,8 @@
                                                 class="fas fa-server fa-2x fa-inverse"></i></div>
                                     </div>
                                     <div class="flex-1 text-right md:text-center">
-                                        <h2 class="font-bold uppercase text-sm text-gray-600">Server Uptime</h2>
-                                        <p class="font-bold text-lg">7 days</p>
+                                        <h2 class="font-bold uppercase text-sm text-gray-600">Total Reclamos</h2>
+                                        <p class="font-bold text-lg">{{ $reclamos }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -105,8 +105,8 @@
                                                 class="fas fa-tasks fa-2x fa-inverse"></i></div>
                                     </div>
                                     <div class="flex-1 text-right md:text-center">
-                                        <h2 class="font-bold uppercase text-sm text-gray-600">To Do List</h2>
-                                        <p class="font-bold text-lg">7 tasks</p>
+                                        <h2 class="font-bold uppercase text-sm text-gray-600">Total Aceptados</h2>
+                                        <p class="font-bold text-lg">{{ $aceptados }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -122,8 +122,8 @@
                                                 class="fas fa-inbox fa-2x fa-inverse"></i></div>
                                     </div>
                                     <div class="flex-1 text-right md:text-center">
-                                        <h2 class="font-bold uppercase text-sm text-gray-600">Issues</h2>
-                                        <p class="font-bold text-lg">3 <span class="text-red-500"><i
+                                        <h2 class="font-bold uppercase text-sm text-gray-600">Total Finalizados</h2>
+                                        <p class="font-bold text-lg">{{ $finalizados }} <span class="text-red-500"><i
                                                     class="fas fa-caret-up"></i></span></p>
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                             <div class="bg-white border-transparent rounded-lg shadow-xl">
                                 <div
                                     class="bg-gradient-to-b bg-primary uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                    <h class="font-bold uppercase text-sm text-white">Graph</h>
+                                    <h class="font-bold uppercase text-sm text-white">Cantidad de mensajeria por tipo</h>
                                 </div>
                                 <div class="p-5">
                                     <canvas id="chartjs-7" class="chartjs" width="undefined" height="undefined"></canvas>
@@ -224,8 +224,8 @@
                             <!--Graph Card-->
                             <div class="bg-white border-transparent rounded-lg shadow-xl">
                                 <div
-                                    class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                    <h2 class="font-bold uppercase text-sm text-gray-600">Graph</h2>
+                                    class="bg-gradient-to-b bg-primary uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                                    <h2 class="font-bold uppercase text-sm text-white">Mensajeria por departamento</h2>
                                 </div>
                                 <div class="p-5">
                                     <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
@@ -254,8 +254,8 @@
                             <!--Graph Card-->
                             <div class="bg-white border-transparent rounded-lg shadow-xl">
                                 <div
-                                    class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                    <h2 class="font-bold uppercase text-sm text-gray-600">Graph</h2>
+                                    class="bg-gradient-to-b bg-primary uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                                    <h2 class="font-bold uppercase text-sm text-white">Nro de solicitud por soporte</h2>
                                 </div>
                                 <div class="p-5">
                                     <canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas>
@@ -299,8 +299,8 @@
                             <!--Graph Card-->
                             <div class="bg-white border-transparent rounded-lg shadow-xl">
                                 <div
-                                    class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                                    <h5 class="font-bold uppercase text-sm text-gray-600">Graph</h5>
+                                    class="bg-gradient-to-b bg-primary uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                                    <h5 class="font-bold uppercase text-sm text-white">Nro de mensajeria por categoria</h5>
                                 </div>
                                 <div class="p-5"><canvas id="chartjs-4" class="chartjs" width="undefined"
                                         height="undefined"></canvas>
