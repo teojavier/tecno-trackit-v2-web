@@ -73,7 +73,7 @@ class CMessegerController extends Controller
             'messenger_type_id' => 1,
             'messenger_status_id' => 1,
             'table' => 'messengers',
-            'redirect' => '/messengers/solicitudes',
+            'redirect' => '/messengers/cliente/solicitudes',
         ]);
 
         Mora::create([
@@ -117,10 +117,10 @@ class CMessegerController extends Controller
             'messenger_type_id' => 2,
             'messenger_status_id' => 1,
             'table' => 'messengers',
-            'redirect' => '/messengers/recomendaciones',
+            'redirect' => '/messengers/cliente/recomendaciones',
         ]);
 
-        return redirect()->route('cliente.recomendaciones')->with('success', 'Recomendacion Registrada Exitosamente.');
+        return redirect()->route('messengers.clientes.recomendaciones')->with('success', 'Recomendacion Registrada Exitosamente.');
     }
 
     public function reclamar()
@@ -153,9 +153,21 @@ class CMessegerController extends Controller
             'messenger_type_id' => 3,
             'messenger_status_id' => 1,
             'table' => 'messengers',
-            'redirect' => '/messengers/reclamos',
+            'redirect' => '/messengers/cliente/reclamos',
         ]);
 
         return redirect()->route('messengers.clientes.reclamos')->with('success', 'Reclamo Registrada Exitosamente.');
+    }
+
+    public function solicitudShow($id)
+    {
+        $page = Page::where('view', 'messengers.clientes.solicitudes.solicitar.show')->first();
+        $page->count = $page->count + 1;
+        $page->save();
+        $contador = $page->count;
+
+        $solicitud = Messenger::find($id);
+
+        return view('cliente.messenger.solicitudShow', compact('contador', 'solicitud'));
     }
 }

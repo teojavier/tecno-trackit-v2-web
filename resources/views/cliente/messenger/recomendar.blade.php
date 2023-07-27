@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <form action="{{ route('messengers.recomendaciones.recomendar.store') }}" method="POST">
+    <form action="{{ route('messengers.clientes.recomendaciones.recomendar.store') }}" method="POST">
         @csrf
         <div>
             <div class="grid grid-cols-3 px-4">

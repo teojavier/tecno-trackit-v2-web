@@ -114,8 +114,8 @@ class MenuSeeder extends Seeder
         ]);
         // 19
         Menu::create([
-            'title' => 'Lista de Soporte IA',
-            'redirect' => 'messengers.reclamos'
+            'title' => 'Chat Soporte IA',
+            'redirect' => 'soporte-ia.index'
         ]);
         // 20
         Menu::create([
@@ -213,7 +213,7 @@ class MenuSeeder extends Seeder
 
         MenuReference::create([
             'menu_id' => 21,
-            'submenu_id' => 9
+            'submenu_id' => 19
         ]);
 
         MenuReference::create([
