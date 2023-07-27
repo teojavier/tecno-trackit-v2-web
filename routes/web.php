@@ -6,6 +6,7 @@ use App\Http\Controllers\Administrativo\UserController;
 use App\Http\Controllers\Administrativo\CategoryController;
 use App\Http\Controllers\Administrativo\DepartmentController;
 use App\Http\Controllers\Administrativo\MoraController;
+use App\Http\Controllers\Cliente\CMessegerController;
 use App\Models\Department;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,21 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     //MORA
     Route::get('/moras', [MoraController::class, 'index'])->name('moras.index');
 
+     //MENSAJERIA CLIENTE
+     Route::get('/messengers/cliente/solicitudes', [CMessegerController::class, 'solicitudes'])->name('messengers.clientes.solicitudes');
+     Route::get('/messengers/cliente/recomendaciones', [CMessegerController::class, 'recomendaciones'])->name('messengers.clientes.recomendaciones');
+     Route::get('/messengers/cliente/reclamos', [CMessegerController::class, 'reclamos'])->name('messengers.clientes.reclamos');
+
+     Route::get('/messengers/cliente/solicitudes/solicitar', [CMessegerController::class, 'solicitar'])->name('messengers.clientes.solicitudes.solicitar');
+     Route::get('/messengers/cliente/solicitudes/solicitar/show/{id}', [CMessegerController::class, 'solicitudShow'])->name('messengers.clientes.solicitudes.solicitar.show');
+     Route::post('/messengers/cliente/solicitudes/solicitar/store', [CMessegerController::class, 'solicitarStore'])->name('messengers.clientes.solicitudes.solicitar.store');
+
+     Route::get('/messengers/cliente/recomendaciones/recomendar', [CMessegerController::class, 'recomendar'])->name('messengers.clientes.recomendaciones.recomendar');
+     Route::post('/messengers/cliente/recomendaciones/recomendar/store', [CMessegerController::class, 'recomendarStore'])->name('messengers.clientes.recomendaciones.recomendar.store');
+ 
+     Route::get('/messengers/cliente/reclamos/reclamar', [CMessegerController::class, 'reclamar'])->name('messengers.clientes.reclamos.reclamar');
+     Route::post('/messengers/cliente/reclamos/reclamar/store', [CMessegerController::class, 'reclamarStore'])->name('messengers.clientes.reclamos.reclamar.store');
+ 
     //ARTICULOS
     Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
     Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');

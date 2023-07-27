@@ -9,8 +9,8 @@ class Navbar extends Component
 {
     public function render()
     {
-        $menus = Menu::where('redirect', 'LIKE' , '%' . '#' . '%')->get();
-
+        $menus = Menu::where('redirect', 'LIKE' , '%' . '#' . '%')
+        ->where('rolname', auth()->user()->roles->first()->name)->get();
         return view('livewire..layout.navbar', compact('menus'));
     }
 }

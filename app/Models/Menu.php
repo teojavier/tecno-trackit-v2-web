@@ -14,5 +14,6 @@ class Menu extends Model
     protected $fillable = [
         'title',
         'redirect',
+        'rolname'
     ];
 }

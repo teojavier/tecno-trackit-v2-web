@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('redirect')->nullable();
+            $table->string('rolname')->nullable();
             $table->timestamps();
         });
     }

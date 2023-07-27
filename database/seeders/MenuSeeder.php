@@ -17,42 +17,50 @@ class MenuSeeder extends Seeder
         // 1
         Menu::create([
             'title' => 'Gestionar Usuario',
-            'redirect' => '#'
+            'redirect' => '#',
+            'rolname' => 'administrativo'
         ]);
         // 2
         Menu::create([
             'title' => 'Gestionar Departamentos',
-            'redirect' => '#'
+            'redirect' => '#',
+            'rolname' => 'administrativo'
         ]);
         // 3
         Menu::create([
             'title' => 'Gestionar Categorias',
-            'redirect' => '#'
+            'redirect' => '#',
+            'rolname' => 'administrativo'
         ]);
         // 4
         Menu::create([
             'title' => 'Gestionar Mora',
-            'redirect' => '#'
+            'redirect' => '#',
+            'rolname' => 'administrativo'
         ]);
         // 5
         Menu::create([
             'title' => 'Gestionar Articulos',
-            'redirect' => '#'
+            'redirect' => '#',
+            'rolname' => 'administrativo'
         ]);
         // 6
         Menu::create([
             'title' => 'Gestionar Mensajeria',
-            'redirect' => '#'
+            'redirect' => '#',
+            'rolname' => 'administrativo'
         ]);
         // 7
         Menu::create([
             'title' => 'Gestionar SoporteIA',
-            'redirect' => '#'
+            'redirect' => '#',
+            'rolname' => 'administrativo'
         ]);
         // 8
         Menu::create([
             'title' => 'Gestionar Reportes',
-            'redirect' => '#'
+            'redirect' => '#',
+            'rolname' => 'administrativo'
         ]);
         // 9
         Menu::create([
@@ -113,6 +121,33 @@ class MenuSeeder extends Seeder
         Menu::create([
             'title' => 'Lista de Reportes',
             'redirect' => 'messengers.reclamos'
+        ]);
+        // 21
+        Menu::create([
+            'title' => 'Soporte IA',
+            'redirect' => '#',
+            'rolname' => 'cliente'
+        ]);
+        // 22
+        Menu::create([
+            'title' => 'Mi Mensajeria',
+            'redirect' => '#',
+            'rolname' => 'cliente'
+        ]);
+        // 23
+        Menu::create([
+            'title' => 'Mis Solicitudes',
+            'redirect' => 'messengers.clientes.solicitudes'
+        ]);
+        // 24
+        Menu::create([
+            'title' => 'Mis Recomendaciones',
+            'redirect' => 'messengers.clientes.recomendaciones'
+        ]);
+        // 25
+        Menu::create([
+            'title' => 'Mis Reclamos',
+            'redirect' => 'messengers.clientes.reclamos'
         ]);
 
         MenuReference::create([
@@ -176,5 +211,24 @@ class MenuSeeder extends Seeder
             'submenu_id' => 20
         ]);
 
+        MenuReference::create([
+            'menu_id' => 21,
+            'submenu_id' => 9
+        ]);
+
+        MenuReference::create([
+            'menu_id' => 22,
+            'submenu_id' => 23
+        ]);
+
+        MenuReference::create([
+            'menu_id' => 22,
+            'submenu_id' => 24
+        ]);
+
+        MenuReference::create([
+            'menu_id' => 22,
+            'submenu_id' => 25
+        ]);
     }
 }
