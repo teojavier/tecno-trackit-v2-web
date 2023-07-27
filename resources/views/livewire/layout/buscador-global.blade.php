@@ -19,7 +19,7 @@
         <div class="flex-1 px-4 pb-4 space-y-4 overflow-y-hidden h hover:overflow-y-auto">
             <h3 class="py-2 text-sm font-semibold text-gray-600 dark:text-light">Historial:</h3>
             
-            {{-- @foreach ($resultados as $resultado)
+            @foreach ($resultados as $resultado)
                 <a href="{{ url( $resultado->redirect )}}" class="flex space-x-4">
                     <div class="flex-shrink-0">
                         <img class="w-10 h-10 rounded-lg" src="{{ asset('image/buscador.png') }}" alt="Post cover" />
@@ -32,7 +32,7 @@
                         <span class="text-sm font-normal text-gray-400 dark:text-primary-light"> URL: {{ $resultado->redirect }} </span>
                     </div>
                 </a>
-            @endforeach --}}
+            @endforeach
         </div>
     </div>
 </div>

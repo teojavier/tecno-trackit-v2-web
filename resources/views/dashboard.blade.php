@@ -6,17 +6,19 @@
         <div class="flex flex-col md:flex-row">
 
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-            <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> <!--Replace with your tailwind.css once created-->
-            <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> <!--Totally optional :) -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
-        
+            <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+            <!--Replace with your tailwind.css once created-->
+            <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+            <!--Totally optional :) -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
+                integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+
 
             <section>
                 <div id="main" class="main-content flex-1 bg-dark mt-12 md:mt-2 pb-24 md:pb-5">
 
                     <div class="pt-3">
-                        <div
-                            class="rounded-tl-3xl bg-gradient-to-r p-4 shadow text-2xl text-primary">
+                        <div class="rounded-tl-3xl bg-gradient-to-r p-4 shadow text-2xl text-primary">
                             <h1 class="font-bold pl-2">Reportes</h1>
                         </div>
                     </div>
@@ -87,7 +89,7 @@
                                     </div>
                                     <div class="flex-1 text-right md:text-center">
                                         <h2 class="font-bold uppercase text-sm text-gray-600">Server Uptime</h2>
-                                        <p class="font-bold text-lg">152 days</p>
+                                        <p class="font-bold text-lg">7 days</p>
                                     </div>
                                 </div>
                             </div>
@@ -130,6 +132,53 @@
                         </div>
                     </div>
 
+                    <?php
+                    $data = $results;
+                    $decodedData = json_decode($data, true);
+                    
+                    $labels = [];
+                    $data = [];
+                    
+                    foreach ($decodedData as $item) {
+                        $labels[] = $item['tipo'];
+                        $data[] = $item['contador'];
+                    }
+
+
+                    $data2 = $results2;
+                    $decodedData2 = json_decode($data2, true);
+                    
+                    $labels2 = [];
+                    $data2 = [];
+                    
+                    foreach ($decodedData2 as $item) {
+                        $labels2[] = $item['departamento'];
+                        $data2[] = $item['contador'];
+                    }
+
+
+                    $data3 = $results3;
+                    $decodedData3 = json_decode($data3, true);
+                    
+                    $labels2 = [];
+                    $data3 = [];
+                    
+                    foreach ($decodedData3 as $item) {
+                        $labels3[] = $item['soporte'];
+                        $data3[] = $item['contador'];
+                    }
+
+                    $data4 = $results4;
+                    $decodedData4 = json_decode($data4, true);
+                    
+                    $labels4 = [];
+                    $data4 = [];
+                    
+                    foreach ($decodedData4 as $item) {
+                        $labels4[] = $item['name'];
+                        $data4[] = $item['contador'];
+                    }
+                    ?>
 
                     <div class="flex flex-row flex-wrap flex-grow mt-2">
 
@@ -146,18 +195,13 @@
                                         new Chart(document.getElementById("chartjs-7"), {
                                             "type": "bar",
                                             "data": {
-                                                "labels": ["January", "February", "March", "April"],
+                                                "labels": <?php echo json_encode($labels); ?>,
                                                 "datasets": [{
-                                                    "label": "Page Impressions",
-                                                    "data": [10, 20, 30, 40],
+                                                    "label": "Contador",
+                                                    "data": <?php echo json_encode($data); ?>,
+                                                    "backgroundColor": "rgba(255, 99, 132, 0.2)",
                                                     "borderColor": "rgb(255, 99, 132)",
-                                                    "backgroundColor": "rgba(255, 99, 132, 0.2)"
-                                                }, {
-                                                    "label": "Adsense Clicks",
-                                                    "data": [5, 15, 10, 30],
-                                                    "type": "line",
-                                                    "fill": false,
-                                                    "borderColor": "rgb(54, 162, 235)"
+                                                    "borderWidth": 1
                                                 }]
                                             },
                                             "options": {
@@ -184,16 +228,15 @@
                                     <h2 class="font-bold uppercase text-sm text-gray-600">Graph</h2>
                                 </div>
                                 <div class="p-5">
-                                    <canvas id="chartjs-0" class="chartjs" width="undefined"
-                                        height="undefined"></canvas>
+                                    <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
                                     <script>
                                         new Chart(document.getElementById("chartjs-0"), {
                                             "type": "line",
                                             "data": {
-                                                "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                                                "labels": <?php echo json_encode($labels2); ?>,
                                                 "datasets": [{
                                                     "label": "Views",
-                                                    "data": [65, 59, 80, 81, 56, 55, 40],
+                                                    "data": <?php echo json_encode($data2); ?>,
                                                     "fill": false,
                                                     "borderColor": "rgb(75, 192, 192)",
                                                     "lineTension": 0.1
@@ -215,16 +258,15 @@
                                     <h2 class="font-bold uppercase text-sm text-gray-600">Graph</h2>
                                 </div>
                                 <div class="p-5">
-                                    <canvas id="chartjs-1" class="chartjs" width="undefined"
-                                        height="undefined"></canvas>
+                                    <canvas id="chartjs-1" class="chartjs" width="undefined" height="undefined"></canvas>
                                     <script>
                                         new Chart(document.getElementById("chartjs-1"), {
                                             "type": "bar",
                                             "data": {
-                                                "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                                                "labels": <?php echo json_encode($labels3); ?>,
                                                 "datasets": [{
                                                     "label": "Likes",
-                                                    "data": [65, 59, 80, 81, 56, 55, 40],
+                                                    "data": <?php echo json_encode($data3); ?>,
                                                     "fill": false,
                                                     "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
                                                         "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)",
@@ -266,10 +308,10 @@
                                         new Chart(document.getElementById("chartjs-4"), {
                                             "type": "doughnut",
                                             "data": {
-                                                "labels": ["P1", "P2", "P3"],
+                                                "labels": <?php echo json_encode($labels4); ?>,
                                                 "datasets": [{
                                                     "label": "Issues",
-                                                    "data": [300, 50, 100],
+                                                    "data": <?php echo json_encode($data4); ?>,
                                                     "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
                                                 }]
                                             }
