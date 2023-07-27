@@ -13,7 +13,7 @@
              dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Buscar" wire:model="search">
 
-            <a href="{{ route('messengers.solicitudes.solicitar') }}"
+            <a href="{{ route('messengers.clientes.solicitudes.solicitar') }}"
                 class="px-3 py-2 ml-5 bg-primary text-white rounded-md ">Solicitar</a>
         </div>
     </div>
