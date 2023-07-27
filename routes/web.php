@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Administrativo\SoporteIAController;
 use App\Http\Controllers\Administrativo\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,5 +30,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
+
+    // Soporte IA
+    Route::get('/soporte-ia', [SoporteIAController::class, 'index'])->name('soporte-ia.index');
 
 });
