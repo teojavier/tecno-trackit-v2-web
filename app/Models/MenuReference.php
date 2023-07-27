@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class MenuReference extends Model
 {
     use HasFactory;
 
-    protected $table = 'articles';
+    protected $table = 'menu_references';
 
     protected $fillable = [
-        'title',
-        'content',
-        'table',
-        'redirect',
-        'categorie_id',
+        'menu_id',
+        'submenu_id',
     ];
 }

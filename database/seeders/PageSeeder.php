@@ -98,5 +98,60 @@ class PageSeeder extends Seeder
             'view' => 'moras.index',
             'count' => 0,
         ]);
+
+        Page::create([
+            'view' => 'articles.index',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'articles.create',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'articles.edit',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'articles.show',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.clientes.solicitudes',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.clientes.recomendaciones',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.clientes.reclamos',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.clientes.solicitudes.solicitar',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.clientes.solicitudes.solicitar.show',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.clientes.recomendaciones.recomendar',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'messengers.clientes.reclamos.reclamar',
+            'count' => 0,
+        ]);
     }
 }

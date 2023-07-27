@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(MenuSeeder::class);
         $this->call(PageSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(ArticleSeeder::class);
@@ -23,6 +24,5 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(ArrearStatusSeeder::class);
         $this->call(MoraSeeder::class);
-        
     }
 }
