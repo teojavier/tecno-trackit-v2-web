@@ -95,28 +95,6 @@
         </div>
 
     @endif
-    <script>
-        Livewire.on('event-destroy-article', function(id) {
-            Swal.fire({
-                title: 'Estas seguro de eliminar el articulo?',
-                text: "Si aceptas no abrá vuelta atras!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, estoy seguro'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Eliminado!',
-                        'Articulo Eliminado Correctamente.',
-                        'success'
-                    )
-                    Livewire.emit('eventDestroyArticleAccept', id);
-                }
-            })
 
-        });
-    </script>
 </div>
 

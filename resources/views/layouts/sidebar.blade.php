@@ -668,6 +668,142 @@
 
     <!-- All javascript code in this project for now is just for demo DON'T RELY ON IT  -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+
+    <script>
+        Livewire.on('event-destroy-article', function(id) {
+            Swal.fire({
+                title: 'Estas seguro de eliminar el articulo?',
+                text: "Si aceptas no abrá vuelta atras!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, estoy seguro'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'Articulo Eliminado Correctamente.',
+                        'success'
+                    )
+                    Livewire.emit('eventDestroyArticleAccept', id);
+                }
+            })
+
+        });
+
+        Livewire.on('event-destroy-category', function(categoria) {
+            Swal.fire({
+                title: 'Estas seguro de eliminar a:' + categoria.name + ' ?',
+                text: "Si aceptas no abrá vuelta atras!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, estoy seguro'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'Categoria Eliminada Correctamente.',
+                        'success'
+                    )
+                    Livewire.emit('eventDestroyCategoryAccept', categoria.id);
+                }
+            })
+
+        });
+
+        Livewire.on('event-destroy-department', function(departamento) {
+            Swal.fire({
+                title: 'Estas seguro de eliminar a: ' + departamento.name + ' ?',
+                text: "Si aceptas no abrá vuelta atras!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, estoy seguro'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'departamento Eliminado Correctamente.',
+                        'success'
+                    )
+                    Livewire.emit('eventDestroyDepartmentAccept', departamento.id);
+                }
+            })
+
+        });
+
+        Livewire.on('event-solicitud-accept', function(id) {
+            Swal.fire({
+                title: 'Estas seguro de ACEPTAR la solicitud ?',
+                text: "Si aceptas no abrá vuelta atras!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, estoy seguro'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Aceptado!',
+                        'Solicitud Aceptada Correctamente.',
+                        'success'
+                    )
+                    Livewire.emit('eventSolicitudAcceptCorrecty', id);
+                }
+            })
+
+        });
+
+        Livewire.on('event-solicitud-finish', function(id) {
+            Swal.fire({
+                title: 'Estas seguro de FINALIZAR la solicitud ?',
+                text: "Si aceptas no abrá vuelta atras!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, estoy seguro'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Aceptado!',
+                        'Solicitud Aceptada Correctamente.',
+                        'success'
+                    )
+                    Livewire.emit('eventSolicitudFinishCorrecty', id);
+                }
+            })
+
+        });
+
+        Livewire.on('event-destroy-user', function(user) {
+            Swal.fire({
+                title: 'Estas seguro de eliminar a:' + user.name + ' ?',
+                text: "Si aceptas no abrá vuelta atras!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, estoy seguro'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Eliminado!',
+                        'Usuario Eliminado Correctamente.',
+                        'success'
+                    )
+                    Livewire.emit('eventDestroyUserAccept', user.id);
+                }
+            })
+
+        });
+
+    </script>
+
     <script>
         const setup = () => {
 

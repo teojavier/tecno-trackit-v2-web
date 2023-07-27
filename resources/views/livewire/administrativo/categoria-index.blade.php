@@ -87,27 +87,5 @@
         </div>
 
     @endif
-    <script>
-        Livewire.on('event-destroy-category', function(categoria) {
-            Swal.fire({
-                title: 'Estas seguro de eliminar a:' + categoria.name + ' ?',
-                text: "Si aceptas no abrá vuelta atras!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, estoy seguro'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Eliminado!',
-                        'Categoria Eliminada Correctamente.',
-                        'success'
-                    )
-                    Livewire.emit('eventDestroyCategoryAccept', categoria.id);
-                }
-            })
 
-        });
-    </script>
 </div>
