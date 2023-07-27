@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Administrativo\ArticleController;
 use App\Http\Controllers\Administrativo\MessengerController;
 use App\Http\Controllers\Administrativo\UserController;
 use App\Http\Controllers\Administrativo\CategoryController;
@@ -23,7 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
@@ -35,20 +36,20 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
 
-     //CATEGORIAS
-     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-     Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-     Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
-     Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
-     Route::post('/categories/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
-     
-     //DEPARTAMENTOS
-     Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
-     Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
-     Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
-     Route::get('/departments/edit/{id}', [DepartmentController::class, 'edit'])->name('departments.edit');
-     Route::post('/departments/update/{id}', [DepartmentController::class, 'update'])->name('departments.update');
- 
+    //CATEGORIAS
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('/categories/store', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::post('/categories/update/{id}', [CategoryController::class, 'update'])->name('categories.update');
+
+    //DEPARTAMENTOS
+    Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
+    Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
+    Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
+    Route::get('/departments/edit/{id}', [DepartmentController::class, 'edit'])->name('departments.edit');
+    Route::post('/departments/update/{id}', [DepartmentController::class, 'update'])->name('departments.update');
+
     //MENSAJERIA
     Route::get('/messengers/solicitudes', [MessengerController::class, 'solicitudes'])->name('messengers.solicitudes');
     Route::get('/messengers/recomendaciones', [MessengerController::class, 'recomendaciones'])->name('messengers.recomendaciones');
@@ -66,4 +67,13 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
     //MORA
     Route::get('/moras', [MoraController::class, 'index'])->name('moras.index');
+
+    //ARTICULOS
+    Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+    Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
+    Route::post('/articles/store', [ArticleController::class, 'store'])->name('articles.store');
+    Route::post('/ckeditor/upload_image', [ArticleController::class, 'uploadImage'])->name('upload');
+    Route::get('/articles/edit/{id}', [ArticleController::class, 'edit'])->name('articles.edit');
+    Route::post('/articles/update/{id}', [ArticleController::class, 'update'])->name('articles.update');
+    Route::get('/articles/show/{id}', [ArticleController::class, 'show'])->name('articles.show');
 });

@@ -34,7 +34,7 @@
                         <option value="{{ $categoria->id }}">{{ $categoria->name }}</option>
                         @endforeach
                     </select>
-                    @error('support')
+                    @error('category')
                         <span class="text-left text-red-500 ">Inserte Datos Correctos</span>
                     @enderror
                 </div>

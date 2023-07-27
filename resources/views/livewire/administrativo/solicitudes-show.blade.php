@@ -125,21 +125,21 @@
                     <textarea class="w-full text-black" id="conclution2" cols="30" rows="5" readonly>{{ $solicitud->conclution }}</textarea>
                 </div>
                 <div>
-                    <table class="min-w-max w-full table-auto">
+                    <table class="table">
                         <thead>
                             <tr class="border bg-primary text-primary text-white uppercase text-sm leading-normal">
-                                <th class="border py-3 px-6 text-left">Acción</th>
-                                <th class="border py-3 px-6 text-left">Tiempo</th>
+                                <th class="bg-primary">Acción</th>
+                                <th class="bg-primary">Tiempo</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-600 dark:text-light ">
                             <tr class="border border-gray-200 hover:bg-gray-100 hover:text-black">
-                                <td class="border py-3 px-6 text-left whitespace-nowrap">
+                                <td class="">
                                     <div class="flex items-center">
                                         <span class="font-medium">Tiempo en Aceptar</span>
                                     </div>
                                 </td>
-                                <td class="border py-3 px-6 text-left whitespace-nowrap">
+                                <td class="">
                                     <div class="flex items-center">
                                         <span class="font-medium">
                                             @if ($solicitud_aceptacion->ano != 0)
@@ -165,12 +165,12 @@
                                 </td>
                             </tr>
                             <tr class="border border-gray-200 hover:bg-gray-100 hover:text-black">
-                                <td class="border py-3 px-6 text-left whitespace-nowrap">
+                                <td class="">
                                     <div class="flex items-center">
                                         <span class="font-medium">Tiempo en Finalizar</span>
                                     </div>
                                 </td>
-                                <td class="border py-3 px-6 text-left whitespace-nowrap">
+                                <td class="">
                                     <div class="flex items-center">
                                         <span class="font-medium">
                                             @if ($aceptacion_finalizacion->ano != 0)
@@ -196,12 +196,12 @@
                                 </td>
                             </tr>
                             <tr class="border border-gray-200 hover:bg-gray-100 hover:text-black">
-                                <td class="border py-3 px-6 text-left whitespace-nowrap">
+                                <td class="">
                                     <div class="flex items-center">
                                         <span class="font-medium">Tiempo Total de Atención</span>
                                     </div>
                                 </td>
-                                <td class="border py-3 px-6 text-left whitespace-nowrap">
+                                <td class="">
                                     <div class="flex items-center">
                                         <span class="font-medium">
                                             @if ($tiempo_total->ano != 0)

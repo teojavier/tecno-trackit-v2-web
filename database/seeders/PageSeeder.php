@@ -98,5 +98,25 @@ class PageSeeder extends Seeder
             'view' => 'moras.index',
             'count' => 0,
         ]);
+
+        Page::create([
+            'view' => 'articles.index',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'articles.create',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'articles.edit',
+            'count' => 0,
+        ]);
+
+        Page::create([
+            'view' => 'articles.show',
+            'count' => 0,
+        ]);
     }
 }

@@ -13,106 +13,95 @@
              dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Buscar" wire:model="search">
 
-            <a href="{{ route('messengers.solicitudes.solicitar') }}" class="px-3 py-2 ml-5 bg-primary text-white rounded-md ">Solicitar</a>
+            <a href="{{ route('messengers.solicitudes.solicitar') }}"
+                class="px-3 py-2 ml-5 bg-primary text-white rounded-md ">Solicitar</a>
         </div>
     </div>
 
     @if ($solicitudes->count())
-        <div class="overflow-x-auto">
-            <div class=" bg-primary-dark flex items-center justify-center font-sans  overflow-hidden">
-                <div class="w-full lg:w-5/6">
-                    <div class="bg-white dark:bg-dark shadow-md rounded">
-                        <table class="min-w-max w-full table-auto">
-                            <thead>
-                                <tr class="border bg-primary text-primary text-white uppercase text-sm leading-normal">
-                                    <th class="border py-3 px-6 text-left">ID</th>
-                                    <th class="border py-3 px-6 text-left">Descripcion</th>
-                                    <th class="border py-3 px-6 text-left">Solicitante</th>
-                                    <th class="border py-3 px-6 text-left">Soporte</th>
-                                    <th class="border py-3 px-6 text-left">Estado</th>
-                                    <th class="border py-3 px-6 text-left">Estado Mora</th>
-                                    <th class="border py-3 px-6 text-center">Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-gray-600 dark:text-light ">
-                                @foreach ($solicitudes as $solicitud)
-                                    <tr class="border border-gray-200 hover:bg-gray-100 hover:text-black">
-                                        <td class="border py-3 px-6 text-left whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <span class="font-medium">{{ $solicitud->id }}</span>
-                                            </div>
-                                        </td>
+        <div class="overflow-x-auto p-5">
+            <table class="table">
+                <thead>
+                    <tr class="border bg-primary text-primary text-white uppercase text-sm leading-normal">
+                        <th class="bg-primary">ID</th>
+                        <th class="bg-primary">Descripcion</th>
+                        <th class="bg-primary">Solicitante</th>
+                        <th class="bg-primary">Soporte</th>
+                        <th class="bg-primary">Estado</th>
+                        <th class="bg-primary">Estado Mora</th>
+                        <th class="bg-primary">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 dark:text-light ">
+                    @foreach ($solicitudes as $solicitud)
+                        <tr class="border border-gray-200 hover:bg-gray-100 hover:text-black">
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span class="font-medium">{{ $solicitud->id }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $solicitud->description }}</span>
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $solicitud->description }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $solicitud->client }}</span>
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $solicitud->client }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $solicitud->support }}</span>
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $solicitud->support }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                @if ($solicitud->status == 'Solicitado')
-                                                    <span
-                                                        class="bg-green-500 rounded-lg px-2">{{ $solicitud->status }}</span>
-                                                @endif
+                            <td class="">
+                                <div class="flex items-center">
+                                    @if ($solicitud->status == 'Solicitado')
+                                        <span class="bg-green-500 rounded-lg px-2">{{ $solicitud->status }}</span>
+                                    @endif
 
-                                                @if ($solicitud->status == 'Atendiendo')
-                                                    <span
-                                                        class="bg-yellow-500 rounded-lg px-2">{{ $solicitud->status }}</span>
-                                                @endif
+                                    @if ($solicitud->status == 'Atendiendo')
+                                        <span class="bg-yellow-500 rounded-lg px-2">{{ $solicitud->status }}</span>
+                                    @endif
 
-                                                @if ($solicitud->status == 'Finalizado')
-                                                    <span
-                                                        class="bg-blue-500 rounded-lg px-2">{{ $solicitud->status }}</span>
-                                                @endif
-                                            </div>
-                                        </td>
+                                    @if ($solicitud->status == 'Finalizado')
+                                        <span class="bg-blue-500 rounded-lg px-2">{{ $solicitud->status }}</span>
+                                    @endif
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                @if ($solicitud->arrear_statu == 'sin mora')
-                                                    <span
-                                                        class="bg-green-500 rounded-lg px-2">{{ $solicitud->arrear_statu }}</span>
-                                                @endif
+                            <td class="">
+                                <div class="flex items-center">
+                                    @if ($solicitud->arrear_statu == 'sin mora')
+                                        <span class="bg-green-500 rounded-lg px-2">{{ $solicitud->arrear_statu }}</span>
+                                    @endif
 
-                                                @if ($solicitud->arrear_statu == 'moroso')
-                                                    <span
-                                                        class="bg-red-500 rounded-lg px-2">{{ $solicitud->arrear_statu }}</span>
-                                                @endif
+                                    @if ($solicitud->arrear_statu == 'moroso')
+                                        <span class="bg-red-500 rounded-lg px-2">{{ $solicitud->arrear_statu }}</span>
+                                    @endif
 
-                                            </div>
-                                        </td>
+                                </div>
+                            </td>
 
-                                        
-
-                                        <td class="py-3 px-10 text-center">
-                                            <div class="flex item-center justify-center">
-                                                <a href="{{ route('messengers.solicitudes.solicitar.show', $solicitud->id) }}" class="focus:outline-none">
-                                                    <div class="w-4 mr-2 transform hover:text-primary hover:scale-110">
-                                                        <i class="far fa-eye"></i> 
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                            <td class="">
+                                <div class="flex item-center justify-center">
+                                    <a href="{{ route('messengers.solicitudes.solicitar.show', $solicitud->id) }}"
+                                        class="focus:outline-none">
+                                        <div class="w-4 mr-2 transform hover:text-primary hover:scale-110">
+                                            <i class="far fa-eye"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     @else
         <div class="px-6 py-4">

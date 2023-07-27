@@ -16,5 +16,6 @@ class Article extends Model
         'content',
         'table',
         'redirect',
+        'categorie_id',
     ];
 }

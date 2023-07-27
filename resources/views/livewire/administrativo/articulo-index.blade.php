@@ -13,68 +13,80 @@
              dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Buscar" wire:model="search">
 
-            <a href="{{ route('messengers.reclamos.reclamar') }}"
+            <a href="{{ route('articles.create') }}"
                 class="px-3 py-2 ml-5 bg-primary text-white rounded-md ">Registrar</a>
         </div>
     </div>
 
-    @if ($reclamos->count())
+    @if ($articulos->count())
         <div class="overflow-x-auto p-5">
 
             <table class="table">
                 <thead>
                     <tr class="border bg-primary text-primary text-white uppercase text-sm leading-normal">
                         <th class="bg-primary">ID</th>
-                        <th class="bg-primary">Descripcion</th>
-                        <th class="bg-primary">Categoría</th>
-                        <th class="bg-primary">Solicitante</th>
-                        <th class="bg-primary">Soporte</th>
-                        <th class="bg-primary">Fecha</th>
+                        <th class="bg-primary">Titulo</th>
+                        <th class="bg-primary">Categoria</th>
+                        <th class="bg-primary">Opciones</th>
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 dark:text-light ">
-                    @foreach ($reclamos as $reclamo)
+                    @foreach ($articulos as $articulo)
                         <tr class="border border-gray-200 hover:bg-gray-100 hover:text-black">
                             <td class="">
                                 <div class="flex items-center">
-                                    <span class="font-medium">{{ $reclamo->id }}</span>
+                                    <span class="font-medium">{{ $articulo->id }}</span>
                                 </div>
                             </td>
 
                             <td class="">
                                 <div class="flex items-center">
-                                    <span>{{ $reclamo->description }}</span>
+                                    <span>{{ $articulo->title }}</span>
                                 </div>
                             </td>
 
                             <td class="">
                                 <div class="flex items-center">
-                                    <span>{{ $reclamo->categorie }}</span>
+                                    <span>{{ $articulo->category }}</span>
                                 </div>
                             </td>
 
-                            <td class="">
-                                <div class="flex items-center">
-                                    <span>{{ $reclamo->client }}</span>
-                                </div>
-                            </td>
 
                             <td class="">
-                                <div class="flex items-center">
-                                    <span>{{ $reclamo->support }}</span>
-                                </div>
-                            </td>
-
-                            <td class="">
-                                <div class="flex items-center">
-                                    <span>{{ $reclamo->created_at }}</span>
+                                <div class="flex item-center justify-center">
+                                    <div class="mr-1">
+                                        <a href="{{ route( 'articles.show', $articulo->id ) }}"
+                                            class="focus:outline-none">
+                                            <div class="w-4 mr-2 transform hover:text-primary hover:scale-110">
+                                                <i class="far fa-eye"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="w-4 mr-2 transform hover:text-primary hover:scale-110">
+                                        <a href="{{ route('articles.edit', $articulo->id) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <button class="focus:outline-none"
+                                        wire:click="eventDestroyArticle({{ $articulo->id }})">
+                                        <div class="w-4 mr-2 transform hover:text-primary hover:scale-110">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                        </div>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-
         </div>
     @else
         <div class="px-6 py-4">
@@ -84,9 +96,9 @@
 
     @endif
     <script>
-        Livewire.on('event-destroy-user', function(user) {
+        Livewire.on('event-destroy-article', function(id) {
             Swal.fire({
-                title: 'Estas seguro de eliminar a:' + user.name + ' ?',
+                title: 'Estas seguro de eliminar el articulo?',
                 text: "Si aceptas no abrá vuelta atras!",
                 icon: 'warning',
                 showCancelButton: true,
@@ -97,13 +109,14 @@
                 if (result.isConfirmed) {
                     Swal.fire(
                         'Eliminado!',
-                        'Usuario Eliminado Correctamente.',
+                        'Articulo Eliminado Correctamente.',
                         'success'
                     )
-                    Livewire.emit('eventDestroyUserAccept', user.id);
+                    Livewire.emit('eventDestroyArticleAccept', id);
                 }
             })
 
         });
     </script>
 </div>
+

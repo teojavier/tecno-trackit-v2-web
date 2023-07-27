@@ -13,13 +13,18 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/layout/tailwind.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/layout/tabla.css') }}" type="text/css">
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.5.x/dist/component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+    
     <!-- Styles -->
     @livewireStyles
     @livewireScripts
@@ -133,9 +138,9 @@
                                 <span class="ml-2 text-sm"> Gestionar Categorias </span>
                                 <span aria-hidden="true" class="ml-auto">
                                     <!-- active class 'rotate-180' -->
-                                    <svg class="w-4 h-4 transition-transform transform"
-                                        :class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg class="w-4 h-4 transition-transform transform" :class="{ 'rotate-180': open }"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M19 9l-7 7-7-7" />
                                     </svg>
@@ -214,9 +219,17 @@
                             <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
                                 <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                                 <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                                <a href="{{ route('users.index') }}" role="menuitem"
+                                <a href="{{ route('articles.index') }}" role="menuitem"
                                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
-                                    Lista de Usuarios
+                                    Lista de Articulos
+                                </a>
+                            </div>
+                            <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
+                                <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                                <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                                <a href="{{ route('articles.create') }}" role="menuitem"
+                                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">
+                                    Crear Articulo
                                 </a>
                             </div>
                         </div>
@@ -483,14 +496,14 @@
                                     class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
                                     tabindex="-1" role="menu" aria-orientation="vertical"
                                     aria-label="User menu">
-                                    <a href="{{ route('profile.show') }}" role="menuitem"
+                                    {{-- <a href="{{ route('profile.show') }}" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Perfil
-                                    </a>
-                                    <a href="#" role="menuitem"
+                                    </a> --}}
+                                    {{-- <a href="#" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Tarjeta de Credito
-                                    </a>
+                                    </a> --}}
                                     <a href="{{ route('logout') }}" role="menuitem"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
@@ -597,14 +610,14 @@
                                     x-transition:leave-end="translate-y-1/2 opacity-0" @click.away="open = false"
                                     class="absolute right-0 w-48 py-1 origin-top-right bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark"
                                     role="menu" aria-orientation="vertical" aria-label="User menu">
-                                    <a href="{{ route('profile.show') }}" role="menuitem"
+                                    {{-- <a href="{{ route('profile.show') }}" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Perfil
-                                    </a>
-                                    <a href="#" role="menuitem"
+                                    </a> --}}
+                                    {{-- <a href="#" role="menuitem"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">
                                         Tarjeta de Credito
-                                    </a>
+                                    </a> --}}
                                     <a href="{{ route('logout') }}" role="menuitem"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                         class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-primary">

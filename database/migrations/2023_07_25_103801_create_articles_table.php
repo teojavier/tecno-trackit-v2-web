@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->string('table')->nullable();
             $table->string('redirect')->nullable();
+            $table->unsignedBigInteger('categorie_id')->nullable()->foreign('categorie_id')->references('id')->on('categories')->onDelete('set null');
             $table->timestamps();
         });
     }

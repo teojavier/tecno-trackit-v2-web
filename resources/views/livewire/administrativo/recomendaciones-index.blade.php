@@ -13,71 +13,66 @@
              dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Buscar" wire:model="search">
 
-            <a href="{{ route('messengers.recomendaciones.recomendar') }}" class="px-3 py-2 ml-5 bg-primary text-white rounded-md ">Registrar</a>
+            <a href="{{ route('messengers.recomendaciones.recomendar') }}"
+                class="px-3 py-2 ml-5 bg-primary text-white rounded-md ">Registrar</a>
         </div>
     </div>
 
     @if ($recomendaciones->count())
-        <div class="overflow-x-auto">
-            <div class=" bg-primary-dark flex items-center justify-center font-sans  overflow-hidden">
-                <div class="w-full lg:w-5/6">
-                    <div class="bg-white dark:bg-dark shadow-md rounded">
-                        <table class="min-w-max w-full table-auto">
-                            <thead>
-                                <tr class="border bg-primary text-primary text-white uppercase text-sm leading-normal">
-                                    <th class="border py-3 px-6 text-left">ID</th>
-                                    <th class="border py-3 px-6 text-left">Descripcion</th>
-                                    <th class="border py-3 px-6 text-left">Categoría</th>
-                                    <th class="border py-3 px-6 text-left">Solicitante</th>
-                                    <th class="border py-3 px-6 text-left">Soporte</th>
-                                    <th class="border py-3 px-6 text-left">Fecha</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-gray-600 dark:text-light ">
-                                @foreach ($recomendaciones as $recomendacion)
-                                    <tr class="border border-gray-200 hover:bg-gray-100 hover:text-black">
-                                        <td class="border py-3 px-6 text-left whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <span class="font-medium">{{ $recomendacion->id }}</span>
-                                            </div>
-                                        </td>
+        <div class="overflow-x-auto p-5">
+            <table class="table">
+                <thead>
+                    <tr class="border bg-primary text-primary text-white uppercase text-sm leading-normal">
+                        <th class="bg-primary">ID</th>
+                        <th class="bg-primary">Descripcion</th>
+                        <th class="bg-primary">Categoría</th>
+                        <th class="bg-primary">Solicitante</th>
+                        <th class="bg-primary">Soporte</th>
+                        <th class="bg-primary">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 dark:text-light ">
+                    @foreach ($recomendaciones as $recomendacion)
+                        <tr class="border border-gray-200 hover:bg-gray-100 hover:text-black">
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span class="font-medium">{{ $recomendacion->id }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $recomendacion->description }}</span>
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $recomendacion->description }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $recomendacion->categorie }}</span>
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $recomendacion->categorie }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $recomendacion->client }}</span>
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $recomendacion->client }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $recomendacion->support }}</span>
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $recomendacion->support }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $recomendacion->created_at }}</span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $recomendacion->created_at }}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     @else
         <div class="px-6 py-4">

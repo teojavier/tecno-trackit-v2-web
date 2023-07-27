@@ -15,82 +15,79 @@
 
         </div>
     </div>
-    
+
     @if ($moras->count())
-        <div class="overflow-x-auto">
-            <div class=" bg-primary-dark flex items-center justify-center font-sans  overflow-hidden">
-                <div class="w-full lg:w-5/6">
-                    <div class="bg-white dark:bg-dark shadow-md rounded">
-                        <table class="min-w-max w-full table-auto">
-                            <thead>
-                                <tr class="border bg-primary text-primary text-white uppercase text-sm leading-normal">
-                                    <th class="border py-3 px-6 text-left">ID</th>
-                                    <th class="border py-3 px-6 text-left">Solicitud ID</th>
-                                    <th class="border py-3 px-6 text-left">Solicitante</th>
-                                    <th class="border py-3 px-6 text-left">Fecha comienzo</th>
-                                    <th class="border py-3 px-6 text-left">Fecha fin</th>
-                                    <th class="border py-3 px-6 text-left">Fecha comparacion</th>
-                                    <th class="border py-3 px-6 text-center">Estado</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-gray-600 dark:text-light ">
-                                @foreach ($moras as $mora)
-                                    <tr class="border border-gray-200 hover:bg-gray-100 hover:text-black">
-                                        <td class="border py-3 px-6 text-left whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <span class="font-medium">{{ $mora->id }}</span>
-                                            </div>
-                                        </td>
+        <div class="overflow-x-auto p-5">
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $mora->messenger_id }}</span>
-                                            </div>
-                                        </td>
+            <table class="table">
+                <thead>
+                    <tr class="border bg-primary text-primary text-white uppercase text-sm leading-normal">
+                        <th class="bg-primary">ID</th>
+                        <th class="bg-primary">Solicitud ID</th>
+                        <th class="bg-primary">Solicitante</th>
+                        <th class="bg-primary">Fecha comienzo</th>
+                        <th class="bg-primary">Fecha fin</th>
+                        <th class="bg-primary">Fecha comparacion</th>
+                        <th class="bg-primary">Estado</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 dark:text-light ">
+                    @foreach ($moras as $mora)
+                        <tr class="border border-gray-200 hover:bg-gray-100 hover:text-black">
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span class="font-medium">{{ $mora->id }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $mora->client}}</span>
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $mora->messenger_id }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $mora->date_begin}}</span>
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $mora->client }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $mora->date_end}}</span>
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $mora->date_begin }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                <span>{{ $mora->date_compare}}</span>
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $mora->date_end }}</span>
+                                </div>
+                            </td>
 
-                                        <td class="border py-3 px-6 text-left">
-                                            <div class="flex items-center">
-                                                @if ($mora->arrear_statu_id == 1)
-                                                <span class="bg-green-500 rounded-lg px-5 py-3 font-bold">{{ $mora->arrear_statu }}</span>
-                                                @endif
-                                                
-                                                @if ($mora->arrear_statu_id == 2)
-                                                <span class="bg-red-500 rounded-lg px-5 py-3 font-bold">{{ $mora->arrear_statu }}</span>
-                                                @endif
-                                            </div>
-                                        </td>
+                            <td class="">
+                                <div class="flex items-center">
+                                    <span>{{ $mora->date_compare }}</span>
+                                </div>
+                            </td>
 
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                            <td class="">
+                                <div class="flex items-center">
+                                    @if ($mora->arrear_statu_id == 1)
+                                        <span
+                                            class="bg-green-500 rounded-lg px-3 py-1 font-bold">{{ $mora->arrear_statu }}</span>
+                                    @endif
+
+                                    @if ($mora->arrear_statu_id == 2)
+                                        <span
+                                            class="bg-red-500 rounded-lg px-2 py-1 font-bold">{{ $mora->arrear_statu }}</span>
+                                    @endif
+                                </div>
+                            </td>
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     @else
         <div class="px-6 py-4">
