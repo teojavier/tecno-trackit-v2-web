@@ -90,7 +90,7 @@
 
                             <td class="">
                                 <div class="flex item-center justify-center">
-                                    <a href="{{ route('messengers.solicitudes.solicitar.show', $solicitud->id) }}"
+                                    <a href="{{ route('messengers.clientes.solicitudes.solicitar.show', $solicitud->id) }}"
                                         class="focus:outline-none">
                                         <div class="w-4 mr-2 transform hover:text-primary hover:scale-110">
                                             <i class="far fa-eye"></i>
