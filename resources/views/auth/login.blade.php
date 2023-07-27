@@ -7,7 +7,7 @@
     <title>Travel Booking </title>
     <meta name="author" content="David Grzyb">
     <meta name="description" content="">
-    <link rel="shortcut icon" href="{{ asset('welcome/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('image/logo.png') }}">
 
     <!-- Tailwind -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">

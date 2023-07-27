@@ -9,7 +9,7 @@
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
     <!--========== ICON ==========-->
-    <link rel="shortcut icon" href="{{ asset('images/utils/logo.png') }}">
+    <link rel="shortcut icon" href="{{ asset('image/logo.png') }}">
 
     <!--========== CSS ==========-->
     <link rel="stylesheet" href="{{ asset('css/welcome/styles.css') }}">
